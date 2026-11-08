@@ -23,6 +23,8 @@ export default async function ToolLayout({ children, params }: ToolLayoutProps) 
     { label: tool.name, href: `/tools/${tool.slug}`, current: true },
   ];
 
+  const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://freeyoutubetools.com";
+
   const toolJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -31,7 +33,7 @@ export default async function ToolLayout({ children, params }: ToolLayoutProps) 
     applicationCategory: "WebApplication",
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    url: `${process.env.NEXT_PUBLIC_APP_URL}/tools/${tool.slug}`,
+    url: `${APP_URL}/tools/${tool.slug}`,
   };
 
   const breadcrumbJsonLd = {
@@ -41,7 +43,7 @@ export default async function ToolLayout({ children, params }: ToolLayoutProps) 
       "@type": "ListItem",
       position: i + 1,
       name: bc.label,
-      item: `${process.env.NEXT_PUBLIC_APP_URL}${bc.href}`,
+      item: `${APP_URL}${bc.href}`,
     })),
   };
 

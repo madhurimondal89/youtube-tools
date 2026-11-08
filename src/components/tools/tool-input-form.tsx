@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -57,38 +58,38 @@ export function ToolInputForm({
   const placeholder = isTitleTool
     ? "Enter your video title here (e.g. 10 powerful habits of successful creators)..."
     : isWordCounter
-    ? "Type/paste text, description, or script (or paste YouTube video URL to analyze)..."
-    : isAI
-    ? `Enter topic, niche, or title for ${tool.shortName}...`
-    : isDownload
-    ? "Paste YouTube Video or Shorts URL (e.g. https://www.youtube.com/watch?v=...)..."
-    : isCalculator
-    ? "Enter view count, revenue, or channel URL..."
-    : "Paste YouTube video URL, channel link, or @username...";
+      ? "Type/paste text, description, or script (or paste YouTube video URL to analyze)..."
+      : isAI
+        ? `Enter topic, niche, or title for ${tool.shortName}...`
+        : isDownload
+          ? "Paste YouTube Video or Shorts URL (e.g. https://www.youtube.com/watch?v=...)..."
+          : isCalculator
+            ? "Enter view count, revenue, or channel URL..."
+            : "Paste YouTube video URL, channel link, or @username...";
 
   const buttonLabel = loading
     ? "Processing..."
     : isTitleTool
-    ? "Capitalize Title"
-    : isWordCounter
-    ? "Count Words & Characters"
-    : isDownload
-    ? "Fetch & Download"
-    : isAI
-    ? "Generate with AI"
-    : isCalculator
-    ? "Calculate Metrics"
-    : "Analyze Now";
+      ? "Capitalize Title"
+      : isWordCounter
+        ? "Count Words & Characters"
+        : isDownload
+          ? "Fetch & Download"
+          : isAI
+            ? "Generate with AI"
+            : isCalculator
+              ? "Calculate Metrics"
+              : "Analyze Now";
 
   const isSubmitDisabled = loading || (
     isMultiField
       ? tool.id === "engagement-rate-calculator"
         ? !input.trim() && (!fieldA.trim() || !fieldB.trim())
         : tool.id === "timestamp-link-generator"
-        ? !fieldA.trim()
-        : tool.id === "course-sales-estimator"
-        ? !fieldA.trim()
-        : !fieldA.trim() || !fieldB.trim()
+          ? !fieldA.trim()
+          : tool.id === "course-sales-estimator"
+            ? !fieldA.trim()
+            : !fieldA.trim() || !fieldB.trim()
       : !input.trim()
   );
 
@@ -138,14 +139,14 @@ export function ToolInputForm({
         {isTitleTool
           ? "Enter your video title to convert capitalization"
           : isWordCounter
-          ? "Enter text, script, or description (or paste YouTube video link)"
-          : isAI
-          ? "Enter your topic, title, or keywords"
-          : isDownload
-          ? "Paste YouTube Video / Shorts link"
-          : isCalculator
-          ? "Enter your calculation parameters"
-          : "Enter YouTube URL or search query"}
+            ? "Enter text, script, or description (or paste YouTube video link)"
+            : isAI
+              ? "Enter your topic, title, or keywords"
+              : isDownload
+                ? "Paste YouTube Video / Shorts link"
+                : isCalculator
+                  ? "Enter your calculation parameters"
+                  : "Enter YouTube URL or search query"}
       </h2>
 
       {/* Selective BYOK API Banners (Only for AI & YouTube API Tools) */}

@@ -14,21 +14,41 @@ export const metadata: Metadata = {
   },
 };
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://freeyoutubetools.com";
+
 const websiteJsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "YouTube Creator Toolkit Pro",
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://freeyoutubetools.com",
-  description:
-    "60+ pro YouTube tools for creators — AI scriptwriting, SEO tags, analytics, thumbnail tools, and calculators.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${process.env.NEXT_PUBLIC_APP_URL}/tools?q={search_term_string}`,
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${APP_URL}/#organization`,
+      name: "Free YouTube Tools Pro",
+      url: APP_URL,
+      logo: `${APP_URL}/icon.svg`,
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "madhurimondal89@gmail.com",
+        contactType: "customer support",
+      },
     },
-    "query-input": "required name=search_term_string",
-  },
+    {
+      "@type": "WebSite",
+      "@id": `${APP_URL}/#website`,
+      name: "Free YouTube Tools Pro",
+      url: APP_URL,
+      description:
+        "55+ pro YouTube tools for creators — AI scriptwriting, SEO tags, analytics, thumbnail tools, and calculators.",
+      publisher: { "@id": `${APP_URL}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${APP_URL}/tools?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
 };
 
 export default function HomePage() {

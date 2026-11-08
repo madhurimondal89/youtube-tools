@@ -29,7 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${APP_URL}/about`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.5,
+      priority: 0.6,
+    },
+    {
+      url: `${APP_URL}/contact`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
     },
     {
       url: `${APP_URL}/privacy`,
