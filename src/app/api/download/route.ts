@@ -129,7 +129,7 @@ export async function GET(req: NextRequest) {
         "--remote-components",
         "ejs:github",
         "--js-runtimes",
-        "node",
+        "quickjs,node:/usr/local/bin/node,node",
         "--no-playlist",
         "--force-overwrites",
       ];
