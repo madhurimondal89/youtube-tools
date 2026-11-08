@@ -6,7 +6,7 @@ import { TOOLS } from "@/lib/tools-registry";
 import * as LucideIcons from "lucide-react";
 import { LucideProps } from "lucide-react";
 
-const FEATURED = TOOLS.filter((t) => t.popular).slice(0, 6);
+const FEATURED = TOOLS.filter((t) => t.popular && !t.comingSoon).slice(0, 6);
 
 function DynamicIcon({ name, ...props }: { name: string } & LucideProps) {
   const Icon = (LucideIcons as unknown as Record<string, React.ComponentType<LucideProps>>)[name];

@@ -13,6 +13,7 @@ export interface Tool {
   tags: string[];
   popular?: boolean;
   isAI?: boolean;
+  comingSoon?: boolean;
 }
 
 export type ToolCategory =
@@ -41,14 +42,15 @@ export const TOOLS: Tool[] = [
     name: "YouTube Video Downloader",
     shortName: "Video Downloader",
     description:
-      "Download YouTube videos in 1080p Full HD, 720p HD, and 4K with instant streaming and direct download formats.",
+      "High-speed 1080p and 4K video downloader engine launching soon on our dedicated high-speed subdomain.",
     icon: "DownloadCloud",
     category: "download",
     color: "#ef4444",
     gradient: "from-red-500 to-rose-600",
     inputTypes: ["video"],
     tags: ["download", "video downloader", "1080p", "4k", "mp4"],
-    popular: true,
+    popular: false,
+    comingSoon: true,
   },
   {
     id: "audio-extractor",
@@ -56,14 +58,15 @@ export const TOOLS: Tool[] = [
     name: "YouTube Audio / MP3 Extractor",
     shortName: "Audio Extractor",
     description:
-      "Extract and download crystal clear MP3/M4A audio tracks, music, podcasts, and sound effects from any video.",
+      "Crystal-clear 320kbps MP3 audio extractor engine launching soon on our dedicated high-speed subdomain.",
     icon: "Music",
     category: "download",
     color: "#8b5cf6",
     gradient: "from-purple-500 to-indigo-600",
     inputTypes: ["video", "shorts"],
     tags: ["mp3", "audio", "soundtrack", "podcast", "music download"],
-    popular: true,
+    popular: false,
+    comingSoon: true,
   },
   {
     id: "thumbnail-downloader",
@@ -969,7 +972,7 @@ export const TOOL_CATEGORIES: Record<
     label: "Download & Media",
     icon: "DownloadCloud",
     color: "#ef4444",
-    description: "Download 1080p/4K videos, shorts, MP3 audio, captions & HD thumbnails.",
+    description: "Download 4K thumbnails, channel banners, avatars, captions & media assets.",
   },
   ai: {
     label: "AI & Scripts",

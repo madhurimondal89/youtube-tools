@@ -13,12 +13,12 @@ const EXAMPLE_URLS = [
   "https://www.youtube.com/@veritasium",
 ];
 
-const POPULAR_TOOLS = TOOLS.filter((t) => t.popular).slice(0, 8);
+const POPULAR_TOOLS = TOOLS.filter((t) => t.popular && !t.comingSoon).slice(0, 8);
 
 export function HeroSection() {
   const router = useRouter();
   const [input, setInput] = useState("");
-  const [selectedTool, setSelectedTool] = useState(TOOLS[0]);
+  const [selectedTool, setSelectedTool] = useState(TOOLS.find((t) => !t.comingSoon) || TOOLS[0]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-          Download 1080p/4K videos & shorts, write AI viral scripts, extract competitor tags, audit channel SEO, test thumbnails, and calculate revenue — 100% free.
+          Extract competitor tags, write viral AI scripts, audit channel SEO, download HD thumbnails, and calculate revenue — 100% free with no signup.
         </p>
 
         {/* Search Box */}

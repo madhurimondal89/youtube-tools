@@ -191,6 +191,11 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                               AI
                             </span>
                           )}
+                          {tool.comingSoon && (
+                            <span className="shrink-0 px-1.5 py-0.5 text-[9px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded">
+                              Soon
+                            </span>
+                          )}
                           {tool.popular && (
                             <Star className="shrink-0 w-3.5 h-3.5 text-amber-500 fill-current" />
                           )}
