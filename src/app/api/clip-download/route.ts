@@ -50,20 +50,49 @@ function getPythonBinary(): string {
   return process.platform === "win32" ? "python" : "python3";
 }
 
+const DEFAULT_COOKIE_DATA = `# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
+
+.youtube.com	TRUE	/	FALSE	1794326774	_gcl_au	1.1.1546078568.1786550774
+.youtube.com	TRUE	/	TRUE	1825263391	__Secure-3PAPISID	nLXHAj5yEIPOqFNM/AiF5e6XZY-4TQGRfb
+.youtube.com	TRUE	/	TRUE	1805901505	NID	CvkBCAESqwEBOxGDSHi7995IovgJr87gYipgckNUnCkA99PqOuSbn9PQFz8qecfoDh935-XrW5mh052OVHzG_om6ZRKV1Xt8XFYTNy5-aXZxtgItNUOr0qe36LxL7eHtN9NJqtfnKRHLQCY5weitiOdVRjySFA_Ocpz_Om8POkSJfQpMvtJrPmTs2NhzCneAEURBWVX-t5C8WI2aAyJQuDD5EFXg-4YWgNfWHfG3zu-OuwQoATJFAdKsB8-251PvxttLedWhrQDd831nHKahEyC_PO5mx5zQPLDMW3zcgD8MTkrj00ZBMFx-RuasNf8PKzUtb5lXyOoTaIgD
+.youtube.com	TRUE	/	TRUE	1821626305	__Secure-1PSIDTS	sidts-CjUBkldj_582acpoAWTJWWH-7GKlpsqQf2hmzv9p4Yx23arVRaVOL0Nw4uhPnk72S6EASo3VTRAA
+.youtube.com	TRUE	/	TRUE	1821626305	__Secure-3PSIDTS	sidts-CjUBkldj_582acpoAWTJWWH-7GKlpsqQf2hmzv9p4Yx23arVRaVOL0Nw4uhPnk72S6EASo3VTRAA
+.youtube.com	TRUE	/	TRUE	1825263391	__Secure-3PSID	g.a000DAnTVwkniJ5byqkz7lfxJgtPAgAp9zR1HQK_ZUnNOtxQSjx3xmEHuxKsaC3Ur8gWEuDwMgACgYKAQgSARYSFQHGX2MibV_8HslAUjZDMvTbQU7pVhoVAUF8yKo7GJsuTShFezpGEvhxyZBI0076
+.youtube.com	TRUE	/	TRUE	1806658802	__Secure-BUCKET	CKMF
+.youtube.com	TRUE	/	TRUE	1828703629	PREF	f7=100&has_user_changed_default_autoplay_mode=true&tz=Asia.Calcutta&repeat=NONE&autoplay=false&f5=20000
+.youtube.com	TRUE	/	TRUE	1825684439	__Secure-3PSIDCC	APD_SKHbwD8KLIxP2I1dj1Trhkxqec3gJau7EaPCEc0oGpCa7JG-BYLI6NZSY_XW6-zdIvjv_gs
+.youtube.com	TRUE	/	TRUE	1809695626	VISITOR_INFO1_LIVE	wVbciga6vN4
+.youtube.com	TRUE	/	TRUE	1809695626	VISITOR_PRIVACY_METADATA	CgJJThIEGgAgRA%3D%3D
+.youtube.com	TRUE	/	TRUE	1809693903	__Secure-YNID	CuwBCAUSngEBDB6PDCUaxMba9ycxCqUb_8KCiXU9qT7V89AY6lUcr-vVUx7qivR8fS8Zu7XASh2D2zUBJCYzjV07oe2c9Uf8V_RVX1ZUaHhYrqpTsQ8Pef-475ioKqmRqcnIjcyzs70hDPsnyclCUMqzEpxG4HVSAZPfmnjsTW7gfSUr1YUb08Uxn7DuCJwzM8-SrSzb6fEmjTpUOObtfD8JjsLQrygFMkUBHFj1amsRz5B72yrriYbOdxvZKyQnnlQdJhOcKki6GCiVj0OtXKmsJ8Dtn9Wu1sX44ccG9FKCE13yt5mK2f5YxcrD5wQ
+.youtube.com	TRUE	/	TRUE	0	YSC	yFh8FSrwrto
+.youtube.com	TRUE	/	TRUE	1809693903	__Secure-ROLLOUT_TOKEN	CKfHpubltYtHEK_3pqy4m5YDGJidq7az-JcD
+`;
+
 function getCookieArgs(): string[] {
-  const cookiePath = path.join(process.cwd(), "cookies.txt");
-  if (fs.existsSync(cookiePath)) {
-    return ["--cookies", cookiePath];
+  const candidatePaths = [
+    path.join(TEMP_DIR, "yt_cookies.txt"),
+    "/app/cookies.txt",
+    path.join(process.cwd(), "cookies.txt"),
+    path.join(process.cwd(), "..", "cookies.txt"),
+  ];
+
+  for (const p of candidatePaths) {
+    if (fs.existsSync(p) && fs.statSync(p).size > 50) {
+      return ["--cookies", p];
+    }
   }
-  if (process.env.YOUTUBE_COOKIES) {
-    const tmpCookie = path.join(TEMP_DIR, "yt_cookies.txt");
-    try {
-      if (!fs.existsSync(tmpCookie)) {
-        fs.writeFileSync(tmpCookie, process.env.YOUTUBE_COOKIES, "utf-8");
-      }
-      return ["--cookies", tmpCookie];
-    } catch {}
+
+  const tmpCookie = path.join(TEMP_DIR, "yt_cookies.txt");
+  try {
+    const dataToWrite = process.env.YOUTUBE_COOKIES || DEFAULT_COOKIE_DATA;
+    fs.writeFileSync(tmpCookie, dataToWrite.trim() + "\n", "utf-8");
+    return ["--cookies", tmpCookie];
+  } catch (e) {
+    console.warn("Could not write cookie fallback:", e);
   }
+
   return [];
 }
 
