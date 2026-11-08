@@ -185,7 +185,7 @@ function MediaDownloadButton({
       setStatus("loading");
       setErrorMessage("");
 
-      const res = await fetch(url);
+      const res = await fetch(url, { headers: { Accept: "application/json, video/*, audio/*" } });
       if (!res.ok) {
         const errJson = await res.json().catch(() => null);
         throw new Error(errJson?.error || `HTTP ${res.status}`);

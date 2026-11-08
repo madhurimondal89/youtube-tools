@@ -106,6 +106,8 @@ export async function GET(req: NextRequest) {
       const args = [
         "-m",
         "yt_dlp",
+        "--extractor-args",
+        "youtube:player_client=visionos,web,android",
         "--remote-components",
         "ejs:github",
         "--js-runtimes",
@@ -171,7 +173,7 @@ export async function GET(req: NextRequest) {
           "-m",
           "yt_dlp",
           "--extractor-args",
-          "youtube:player_client=android,ios,web",
+          "youtube:player_client=visionos,web,android",
           "--no-playlist",
           "--force-overwrites",
         ];
@@ -251,8 +253,9 @@ export async function GET(req: NextRequest) {
     console.error("Downloader error:", lastError);
   }
 
-  // Check accept header: if fetch request from UI, return JSON
-  const acceptsJson = req.headers.get("accept")?.includes("application/json") || req.nextUrl.searchParams.get("format_type") === "json";
+  // Return JSON for fetch/XHR requests from the UI, and HTML only for direct address bar navigation
+  const isDirectBrowserNav = req.headers.get("sec-fetch-dest") === "document";
+  const acceptsJson = !isDirectBrowserNav || req.headers.get("accept")?.includes("application/json");
 
   const isUnavailable =
     lastError.includes("unavailable") ||

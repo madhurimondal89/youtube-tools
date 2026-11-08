@@ -94,6 +94,8 @@ export async function GET(req: NextRequest) {
         const ytdlArgs = [
           "-m",
           "yt_dlp",
+          "--extractor-args",
+          "youtube:player_client=visionos,web,android",
           "--remote-components",
           "ejs:github",
           "--js-runtimes",
