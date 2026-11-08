@@ -249,8 +249,25 @@ function MediaDownloadButton({
           </>
         )}
       </button>
-      {status === "error" && errorMessage ? (
-        <span className="text-[10px] text-rose-400 font-medium">{errorMessage}</span>
+      {status === "error" ? (
+        <div className="flex flex-col items-end gap-1.5 mt-1">
+          {errorMessage ? (
+            <span className="text-[10px] text-rose-400 font-medium max-w-[260px] text-right truncate">
+              {errorMessage}
+            </span>
+          ) : null}
+          {url.includes("v=") ? (
+            <a
+              href={`https://10downloader.com/download?v=https://www.youtube.com/watch?v=${url.split("v=")[1]?.split("&")[0]}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold shadow-sm transition-colors"
+            >
+              <Download className="w-3 h-3" />
+              <span>Instant Download Mirror ⚡</span>
+            </a>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );
