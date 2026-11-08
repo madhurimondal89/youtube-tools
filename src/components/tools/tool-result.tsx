@@ -180,6 +180,23 @@ function MediaDownloadButton({
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const extractVideoId = (u: string, fn: string): string => {
+    try {
+      const parsed = new URL(u, "https://freeyoutubetools.com");
+      const v = parsed.searchParams.get("v") || parsed.searchParams.get("videoId");
+      if (v) return v;
+    } catch {}
+    const matchV = u.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+    if (matchV) return matchV[1];
+    const matchId = u.match(/videoId=([a-zA-Z0-9_-]{11})/);
+    if (matchId) return matchId[1];
+    const matchFn = fn.match(/^([a-zA-Z0-9_-]{11})/);
+    if (matchFn) return matchFn[1];
+    return "";
+  };
+
+  const videoId = extractVideoId(url, filename);
+
   const handleDownload = async () => {
     try {
       setStatus("loading");
@@ -207,65 +224,90 @@ function MediaDownloadButton({
       console.warn("Download error:", err);
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Download failed");
-      setTimeout(() => setStatus("idle"), 5000);
     }
   };
 
   return (
-    <div className="flex flex-col items-end gap-1">
-      <button
-        onClick={handleDownload}
-        disabled={status === "loading"}
-        className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold shadow transition-all cursor-pointer ${
-          status === "loading"
-            ? "bg-primary/80 text-primary-foreground opacity-90 cursor-wait"
-            : status === "done"
-            ? "bg-emerald-600 text-white"
-            : status === "error"
-            ? "bg-rose-600 text-white"
-            : isAudio
-            ? "bg-purple-600 text-white hover:bg-purple-700"
-            : "bg-primary text-primary-foreground hover:opacity-90"
-        }`}
-      >
-        {status === "loading" ? (
-          <>
-            <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            <span>{isAudio ? "Converting 320kbps MP3..." : "Merging HD Video & Audio..."}</span>
-          </>
-        ) : status === "done" ? (
-          <>
-            <Check className="w-3.5 h-3.5" />
-            <span>Downloaded!</span>
-          </>
-        ) : status === "error" ? (
-          <>
-            <span>Retry Download</span>
-          </>
-        ) : (
-          <>
-            <Download className="w-3.5 h-3.5" />
-            <span>{label}</span>
-          </>
-        )}
-      </button>
+    <div className="flex flex-col items-end gap-1.5">
+      <div className="flex items-center gap-2">
+        <button
+          onClick={handleDownload}
+          disabled={status === "loading"}
+          className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold shadow transition-all cursor-pointer ${
+            status === "loading"
+              ? "bg-primary/80 text-primary-foreground opacity-90 cursor-wait"
+              : status === "done"
+              ? "bg-emerald-600 text-white"
+              : status === "error"
+              ? "bg-rose-600 text-white hover:bg-rose-700"
+              : isAudio
+              ? "bg-purple-600 text-white hover:bg-purple-700"
+              : "bg-primary text-primary-foreground hover:opacity-90"
+          }`}
+        >
+          {status === "loading" ? (
+            <>
+              <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <span>{isAudio ? "Converting 320kbps MP3..." : "Merging HD Video & Audio..."}</span>
+            </>
+          ) : status === "done" ? (
+            <>
+              <Check className="w-3.5 h-3.5" />
+              <span>Downloaded!</span>
+            </>
+          ) : status === "error" ? (
+            <>
+              <span>Retry Download</span>
+            </>
+          ) : (
+            <>
+              <Download className="w-3.5 h-3.5" />
+              <span>{label}</span>
+            </>
+          )}
+        </button>
+
+        {videoId ? (
+          <a
+            href={`https://www.ssyoutube.com/watch?v=${videoId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Fast direct download mirror"
+            className="p-2 rounded-xl border border-border bg-card hover:bg-accent text-muted-foreground hover:text-foreground text-xs transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        ) : null}
+      </div>
+
       {status === "error" ? (
-        <div className="flex flex-col items-end gap-1.5 mt-1">
+        <div className="flex flex-col items-end gap-2 mt-1 p-2.5 rounded-xl bg-card border border-rose-500/20 shadow-md max-w-[320px]">
           {errorMessage ? (
-            <span className="text-[10px] text-rose-400 font-medium max-w-[260px] text-right truncate">
-              {errorMessage}
+            <span className="text-[10px] text-rose-400 font-medium text-right leading-relaxed">
+              ⚠️ Server bot protection triggered. Please use instant mirrors below:
             </span>
           ) : null}
-          {url.includes("v=") ? (
-            <a
-              href={`https://10downloader.com/download?v=https://www.youtube.com/watch?v=${url.split("v=")[1]?.split("&")[0]}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold shadow-sm transition-colors"
-            >
-              <Download className="w-3 h-3" />
-              <span>Instant Download Mirror ⚡</span>
-            </a>
+          {videoId ? (
+            <div className="flex flex-wrap items-center justify-end gap-1.5 w-full">
+              <a
+                href={`https://www.ssyoutube.com/watch?v=${videoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold shadow-sm transition-colors"
+              >
+                <Download className="w-3 h-3" />
+                <span>SSYouTube Mirror ⚡</span>
+              </a>
+              <a
+                href={`https://www.y2mate.com/youtube/${videoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold shadow-sm transition-colors"
+              >
+                <Download className="w-3 h-3" />
+                <span>Y2Mate Mirror</span>
+              </a>
+            </div>
           ) : null}
         </div>
       ) : null}
