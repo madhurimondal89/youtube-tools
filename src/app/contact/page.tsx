@@ -31,10 +31,10 @@ export default function ContactPage() {
             </p>
             <div className="pt-2">
               <a
-                href="mailto:support@youtubetoolkit.pro"
+                href="mailto:madhurimondal89@gmail.com"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
               >
-                support@youtubetoolkit.pro →
+                madhurimondal89@gmail.com →
               </a>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function ContactPage() {
           </p>
           <div className="pt-2">
             <a
-              href="mailto:ideas@youtubetoolkit.pro"
+              href="mailto:madhurimondal89@gmail.com"
               className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs sm:text-sm font-semibold hover:opacity-90 transition-opacity"
             >
               Submit Feature Request
