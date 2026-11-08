@@ -18,12 +18,14 @@ if (!fs.existsSync(TEMP_DIR)) {
   } catch {}
 }
 
-// Resolve ffmpeg binary path reliably across Windows and platforms
+// Resolve ffmpeg binary path reliably across Alpine, Linux, and Windows
 function getFfmpegBinary(): string | null {
   const candidates = [
     typeof ffmpegPath === "string" ? ffmpegPath : null,
     path.join(process.cwd(), "node_modules", "ffmpeg-static", "ffmpeg.exe"),
     path.join(process.cwd(), "node_modules", "ffmpeg-static", "ffmpeg"),
+    "/usr/bin/ffmpeg",
+    "/usr/local/bin/ffmpeg",
   ].filter(Boolean) as string[];
 
   for (const cand of candidates) {
@@ -31,7 +33,24 @@ function getFfmpegBinary(): string | null {
       return cand;
     }
   }
-  return null;
+  return "ffmpeg";
+}
+
+// Resolve Python runtime across Docker venv, Alpine, and host environments
+function getPythonBinary(): string {
+  const candidates = [
+    "/opt/venv/bin/python3",
+    "/opt/venv/bin/python",
+    "/usr/local/bin/python",
+    "/usr/bin/python3",
+    "/usr/bin/python",
+  ];
+  for (const cand of candidates) {
+    if (fs.existsSync(cand)) {
+      return cand;
+    }
+  }
+  return process.platform === "win32" ? "python" : "python3";
 }
 
 /**
@@ -61,12 +80,28 @@ export async function GET(req: NextRequest) {
 
   try {
     // 1. Download & merge with ffmpeg if not already cached
-    if (!fs.existsSync(targetFilePath) || fs.statSync(targetFilePath).size === 0) {
+    let existingFile = targetFilePath;
+    const prefix = `${safeFilePrefix}_${isAudio ? "audio" : quality}.`;
+
+    if (!fs.existsSync(existingFile) || fs.statSync(existingFile).size === 0) {
+      // Check if file exists with another extension in temp
+      const match = fs.existsSync(TEMP_DIR)
+        ? fs.readdirSync(TEMP_DIR).find((f) => f.startsWith(prefix) && !f.endsWith(".part") && !f.endsWith(".ytdl"))
+        : null;
+
+      if (match) {
+        existingFile = path.join(TEMP_DIR, match);
+      }
+    }
+
+    if (!fs.existsSync(existingFile) || fs.statSync(existingFile).size === 0) {
+      // Support both horizontal 16:9 and vertical 9:16 Shorts
       const formatSelection = isAudio
         ? "ba/bestaudio/b/best"
-        : `bv*[height<=${quality}]+ba/b[height<=${quality}]/bv*+ba/b/best`;
+        : `bv*[height<=${quality}]+ba/bv*[width<=${quality}]+ba/b[height<=${quality}]/b[width<=${quality}]/bv*+ba/b/best`;
 
       const resolvedFfmpeg = getFfmpegBinary();
+      const pythonBin = getPythonBinary();
 
       const args = [
         "-m",
@@ -124,13 +159,48 @@ export async function GET(req: NextRequest) {
         );
       }
 
-      await execFileAsync("python", args, { timeout: 180000 });
+      try {
+        await execFileAsync(pythonBin, args, { timeout: 240000 });
+      } catch (execErr: unknown) {
+        const cmdErr = execErr as { stderr?: string; stdout?: string; message?: string };
+        const detailedErr = cmdErr.stderr || cmdErr.stdout || cmdErr.message || String(execErr);
+        console.error("yt-dlp primary run failed:", detailedErr);
+
+        // Fallback: retry with player_client=android,ios if EJS or bot verification blocked
+        const fallbackArgs = [
+          "-m",
+          "yt_dlp",
+          "--extractor-args",
+          "youtube:player_client=android,ios,web",
+          "--no-playlist",
+          "--force-overwrites",
+        ];
+        if (resolvedFfmpeg) fallbackArgs.push("--ffmpeg-location", resolvedFfmpeg);
+
+        if (isAudio) {
+          fallbackArgs.push("-f", "ba/b", "-x", "--audio-format", ext, "-o", outTemplate, "--", youtubeUrl);
+        } else {
+          fallbackArgs.push("-f", "b/best", "--merge-output-format", "mp4", "-o", outTemplate, "--", youtubeUrl);
+        }
+
+        console.log("Retrying yt-dlp with mobile extractor fallback...");
+        await execFileAsync(pythonBin, fallbackArgs, { timeout: 240000 });
+      }
+    }
+
+    // Locate downloaded file (handle .mp4, .webm, .mkv, .mp3, etc.)
+    let actualFile = targetFilePath;
+    if (!fs.existsSync(actualFile) || fs.statSync(actualFile).size === 0) {
+      const match = fs.readdirSync(TEMP_DIR).find((f) => f.startsWith(prefix) && !f.endsWith(".part") && !f.endsWith(".ytdl"));
+      if (match) {
+        actualFile = path.join(TEMP_DIR, match);
+      }
     }
 
     // 2. Stream the verified file directly to the client
-    if (fs.existsSync(targetFilePath) && fs.statSync(targetFilePath).size > 0) {
-      const stat = fs.statSync(targetFilePath);
-      const nodeStream = fs.createReadStream(targetFilePath);
+    if (fs.existsSync(actualFile) && fs.statSync(actualFile).size > 0) {
+      const stat = fs.statSync(actualFile);
+      const nodeStream = fs.createReadStream(actualFile);
 
       const webStream = new ReadableStream({
         start(controller) {
@@ -158,8 +228,13 @@ export async function GET(req: NextRequest) {
         },
       });
 
-      const filename = `${safeFilePrefix}.${ext}`;
-      const contentType = isAudio ? "audio/mpeg" : "video/mp4";
+      const actualExt = path.extname(actualFile).replace(".", "") || ext;
+      const filename = `${safeFilePrefix}.${actualExt}`;
+      const contentType = isAudio
+        ? actualExt === "m4a"
+          ? "audio/mp4"
+          : "audio/mpeg"
+        : `video/${actualExt === "webm" ? "webm" : "mp4"}`;
 
       return new Response(webStream, {
         headers: {
@@ -170,24 +245,31 @@ export async function GET(req: NextRequest) {
         },
       });
     }
-  } catch (err) {
-    lastError = err instanceof Error ? err.message : String(err);
+  } catch (err: unknown) {
+    const cmdErr = err as { stderr?: string; stdout?: string; message?: string };
+    lastError = cmdErr.stderr || cmdErr.stdout || cmdErr.message || String(err);
     console.error("Downloader error:", lastError);
   }
 
-  // User-friendly error message
+  // Check accept header: if fetch request from UI, return JSON
+  const acceptsJson = req.headers.get("accept")?.includes("application/json") || req.nextUrl.searchParams.get("format_type") === "json";
+
   const isUnavailable =
     lastError.includes("unavailable") ||
     lastError.includes("Private video") ||
     lastError.includes("Video unavailable");
 
-  const errorTitle = isUnavailable
-    ? "Video Unavailable or Private"
-    : "Video Download Failed";
+  const cleanErrorMessage = isUnavailable
+    ? "This YouTube video is private or unavailable."
+    : lastError
+    ? `Stream processing error: ${lastError.slice(0, 150)}`
+    : "Unable to process video stream. Please try again.";
 
-  const errorDesc = isUnavailable
-    ? "This YouTube video is private, removed, or the URL contains a typo. Please verify the URL and try with a valid public video."
-    : "Unable to process the video stream. Please check your internet connection or URL and try again.";
+  if (acceptsJson) {
+    return NextResponse.json({ error: cleanErrorMessage }, { status: isUnavailable ? 404 : 500 });
+  }
+
+  const errorTitle = isUnavailable ? "Video Unavailable or Private" : "Video Download Failed";
 
   const errorHtml = `
     <!DOCTYPE html>
@@ -201,7 +283,7 @@ export async function GET(req: NextRequest) {
         .card { max-width: 480px; width: 100%; background: #18181b; border: 1px solid #27272a; border-radius: 16px; padding: 36px 28px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .icon { font-size: 44px; margin-bottom: 16px; }
         h1 { font-size: 20px; font-weight: 700; margin: 0 0 12px; color: #f87171; }
-        p { color: #a1a1aa; font-size: 14px; line-height: 1.6; margin: 0 0 28px; }
+        p { color: #a1a1aa; font-size: 14px; line-height: 1.6; margin: 0 0 28px; word-break: break-word; }
         .btn { display: inline-block; background: #ef4444; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; transition: opacity 0.2s; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
         .btn:hover { opacity: 0.9; }
       </style>
@@ -210,7 +292,7 @@ export async function GET(req: NextRequest) {
       <div class="card">
         <div class="icon">⚠️</div>
         <h1>${errorTitle}</h1>
-        <p>${errorDesc}</p>
+        <p>${cleanErrorMessage}</p>
         <a href="/tools/youtube-video-downloader" class="btn">Try Another Video</a>
       </div>
     </body>

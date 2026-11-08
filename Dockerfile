@@ -23,14 +23,23 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Install Python, FFmpeg, and yt-dlp for media processing
-RUN apk add --no-cache python3 py3-pip ffmpeg libc6-compat && \
+# Install Python3, FFmpeg, git, and yt-dlp with system symlinks
+RUN apk add --no-cache python3 py3-pip ffmpeg git ca-certificates libc6-compat && \
     python3 -m venv /opt/venv && \
-    /opt/venv/bin/pip install --no-cache-dir yt-dlp
+    /opt/venv/bin/pip install --no-cache-dir -U yt-dlp && \
+    ln -sf /usr/bin/python3 /usr/bin/python && \
+    ln -sf /opt/venv/bin/python /usr/local/bin/python && \
+    ln -sf /opt/venv/bin/yt-dlp /usr/local/bin/yt-dlp && \
+    ln -sf /usr/bin/ffmpeg /usr/local/bin/ffmpeg
+
 ENV PATH="/opt/venv/bin:$PATH"
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Setup non-root nextjs user with full home directory permissions for yt-dlp cache
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 -h /home/nextjs nextjs && \
+    mkdir -p /home/nextjs/.cache/yt-dlp && \
+    chown -R nextjs:nodejs /home/nextjs
+ENV HOME=/home/nextjs
 
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./

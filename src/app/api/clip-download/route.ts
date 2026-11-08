@@ -22,6 +22,8 @@ function getFfmpegBinary(): string | null {
     typeof ffmpegPath === "string" ? ffmpegPath : null,
     path.join(process.cwd(), "node_modules", "ffmpeg-static", "ffmpeg.exe"),
     path.join(process.cwd(), "node_modules", "ffmpeg-static", "ffmpeg"),
+    "/usr/bin/ffmpeg",
+    "/usr/local/bin/ffmpeg",
   ].filter(Boolean) as string[];
 
   for (const cand of candidates) {
@@ -29,7 +31,23 @@ function getFfmpegBinary(): string | null {
       return cand;
     }
   }
-  return null;
+  return "ffmpeg";
+}
+
+function getPythonBinary(): string {
+  const candidates = [
+    "/opt/venv/bin/python3",
+    "/opt/venv/bin/python",
+    "/usr/local/bin/python",
+    "/usr/bin/python3",
+    "/usr/bin/python",
+  ];
+  for (const cand of candidates) {
+    if (fs.existsSync(cand)) {
+      return cand;
+    }
+  }
+  return process.platform === "win32" ? "python" : "python3";
 }
 
 function formatSeconds(sec: number): string {
@@ -94,7 +112,7 @@ export async function GET(req: NextRequest) {
           youtubeUrl,
         ];
 
-        await execFileAsync("python", ytdlArgs, { timeout: 180000 });
+        await execFileAsync(getPythonBinary(), ytdlArgs, { timeout: 180000 });
       }
 
       // 2. Cut & optionally crop to 9:16 vertical with ffmpeg
