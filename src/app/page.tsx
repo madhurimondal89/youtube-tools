@@ -18,7 +18,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "YouTube Creator Toolkit Pro",
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://youtubetoolkit.pro",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://freeyoutubetools.com",
   description:
     "60+ pro YouTube tools for creators — video downloaders, AI scriptwriting, SEO, analytics, and calculators.",
   potentialAction: {

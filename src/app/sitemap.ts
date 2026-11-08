@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { TOOLS } from "@/lib/tools-registry";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://youtubetoolkit.pro";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://freeyoutubetools.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

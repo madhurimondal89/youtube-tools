@@ -13,7 +13,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://youtubetoolkit.pro";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://freeyoutubetools.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),

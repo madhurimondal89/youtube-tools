@@ -47,7 +47,7 @@ export async function generateText(prompt: string, fallbackText: string, aiParam
         headers["Authorization"] = `Bearer ${apiKey}`;
       }
       if (completionsUrl.includes("openrouter.ai")) {
-        headers["HTTP-Referer"] = "https://youtubetoolkit.pro";
+        headers["HTTP-Referer"] = "https://freeyoutubetools.com";
         headers["X-Title"] = "YouTube Creator Toolkit Pro";
       }
 
