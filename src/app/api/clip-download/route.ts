@@ -50,6 +50,23 @@ function getPythonBinary(): string {
   return process.platform === "win32" ? "python" : "python3";
 }
 
+function getCookieArgs(): string[] {
+  const cookiePath = path.join(process.cwd(), "cookies.txt");
+  if (fs.existsSync(cookiePath)) {
+    return ["--cookies", cookiePath];
+  }
+  if (process.env.YOUTUBE_COOKIES) {
+    const tmpCookie = path.join(TEMP_DIR, "yt_cookies.txt");
+    try {
+      if (!fs.existsSync(tmpCookie)) {
+        fs.writeFileSync(tmpCookie, process.env.YOUTUBE_COOKIES, "utf-8");
+      }
+      return ["--cookies", tmpCookie];
+    } catch {}
+  }
+  return [];
+}
+
 function formatSeconds(sec: number): string {
   const s = Math.max(0, Math.floor(sec));
   const hrs = Math.floor(s / 3600);
@@ -110,6 +127,7 @@ export async function GET(req: NextRequest) {
           "mp4",
           "-o",
           rawSourcePath,
+          ...getCookieArgs(),
           "--",
           youtubeUrl,
         ];

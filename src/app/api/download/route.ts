@@ -53,6 +53,24 @@ function getPythonBinary(): string {
   return process.platform === "win32" ? "python" : "python3";
 }
 
+// Optional cookies support for protected videos on datacenter IPs
+function getCookieArgs(): string[] {
+  const cookiePath = path.join(process.cwd(), "cookies.txt");
+  if (fs.existsSync(cookiePath)) {
+    return ["--cookies", cookiePath];
+  }
+  if (process.env.YOUTUBE_COOKIES) {
+    const tmpCookie = path.join(TEMP_DIR, "yt_cookies.txt");
+    try {
+      if (!fs.existsSync(tmpCookie)) {
+        fs.writeFileSync(tmpCookie, process.env.YOUTUBE_COOKIES, "utf-8");
+      }
+      return ["--cookies", tmpCookie];
+    } catch {}
+  }
+  return [];
+}
+
 /**
  * Ultra-Reliable Zero-API Video & Audio Downloader with Guaranteed Sound Muxing
  */
@@ -120,6 +138,11 @@ export async function GET(req: NextRequest) {
         args.push("--ffmpeg-location", resolvedFfmpeg);
       }
 
+      const cookieArgs = getCookieArgs();
+      if (cookieArgs.length > 0) {
+        args.push(...cookieArgs);
+      }
+
       if (isAudio) {
         if (ext === "mp3") {
           args.push(
@@ -178,6 +201,7 @@ export async function GET(req: NextRequest) {
           "--force-overwrites",
         ];
         if (resolvedFfmpeg) fallbackArgs.push("--ffmpeg-location", resolvedFfmpeg);
+        if (cookieArgs.length > 0) fallbackArgs.push(...cookieArgs);
 
         if (isAudio) {
           fallbackArgs.push("-f", "ba/b", "-x", "--audio-format", ext, "-o", outTemplate, "--", youtubeUrl);
@@ -265,7 +289,7 @@ export async function GET(req: NextRequest) {
   const cleanErrorMessage = isUnavailable
     ? "This YouTube video is private or unavailable."
     : lastError
-    ? `Stream processing error: ${lastError.slice(0, 150)}`
+    ? `Stream processing error: ${lastError.replace(/\r?\n+/g, " ").trim().slice(0, 300)}`
     : "Unable to process video stream. Please try again.";
 
   if (acceptsJson) {

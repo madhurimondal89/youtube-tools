@@ -23,14 +23,15 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Install Python3, FFmpeg, git, and yt-dlp with system symlinks
+# Install Python3, FFmpeg, git, and yt-dlp with default extras and system symlinks
 RUN apk add --no-cache python3 py3-pip ffmpeg git ca-certificates libc6-compat && \
     python3 -m venv /opt/venv && \
-    /opt/venv/bin/pip install --no-cache-dir -U yt-dlp && \
+    /opt/venv/bin/pip install --no-cache-dir -U "yt-dlp[default]" && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /opt/venv/bin/python /usr/local/bin/python && \
     ln -sf /opt/venv/bin/yt-dlp /usr/local/bin/yt-dlp && \
-    ln -sf /usr/bin/ffmpeg /usr/local/bin/ffmpeg
+    ln -sf /usr/bin/ffmpeg /usr/local/bin/ffmpeg && \
+    /opt/venv/bin/python -m yt_dlp --remote-components ejs:github --js-runtimes node --version || true
 
 ENV PATH="/opt/venv/bin:$PATH"
 
