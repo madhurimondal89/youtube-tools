@@ -125,7 +125,7 @@ export async function GET(req: NextRequest) {
         "-m",
         "yt_dlp",
         "--extractor-args",
-        "youtube:player_client=visionos,web,android",
+        "youtube:player_client=visionos",
         "--remote-components",
         "ejs:github",
         "--js-runtimes",
@@ -196,7 +196,7 @@ export async function GET(req: NextRequest) {
           "-m",
           "yt_dlp",
           "--extractor-args",
-          "youtube:player_client=visionos,web,android",
+          "youtube:player_client=visionos",
           "--no-playlist",
           "--force-overwrites",
         ];
