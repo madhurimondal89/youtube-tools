@@ -58,6 +58,15 @@ export const metadata: Metadata = {
       "The ultimate free toolkit for YouTube creators. Analyze, optimize and grow your channel with 60+ professional tools.",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
