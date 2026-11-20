@@ -18,11 +18,11 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://freeyoutubetools.com
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: "YouTube Creator Toolkit Pro — 40+ Free YouTube Tools",
-    template: "%s | YouTube Creator Toolkit Pro",
+    default: "YouTube Creator Toolkit Pro — 60+ Free YouTube Tools",
+    template: "%s | YT Toolkit Pro",
   },
   description:
-    "Free YouTube tools for creators — thumbnail downloader, channel analytics, monetization checker, AI title generator, earnings calculator and 40+ more tools.",
+    "Free YouTube tools for creators — thumbnail downloader, channel analytics, monetization checker, AI title generator, earnings calculator and 60+ more tools.",
   keywords: [
     "youtube tools",
     "youtube thumbnail downloader",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: APP_URL,
-    title: "YouTube Creator Toolkit Pro — 40+ Free YouTube Tools",
+    title: "YouTube Creator Toolkit Pro — 60+ Free YouTube Tools",
     description:
-      "The ultimate free toolkit for YouTube creators. Analyze, optimize and grow your channel.",
+      "The ultimate free toolkit for YouTube creators. Analyze, optimize and grow your channel with 60+ professional tools.",
     siteName: "YouTube Creator Toolkit Pro",
     images: [
       {
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "YouTube Creator Toolkit Pro — 40+ Free YouTube Tools",
+    title: "YouTube Creator Toolkit Pro — 60+ Free YouTube Tools",
     description:
-      "The ultimate free toolkit for YouTube creators. Analyze, optimize and grow your channel.",
+      "The ultimate free toolkit for YouTube creators. Analyze, optimize and grow your channel with 60+ professional tools.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -69,9 +69,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
 };
 
 export default function RootLayout({

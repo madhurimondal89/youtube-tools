@@ -102,7 +102,7 @@ export function ToolPageContent({ tool, initialUrl, initialQuery }: ToolPageCont
             href="/tools"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity shadow text-sm"
           >
-            Explore 55+ Active Free Tools
+            Explore 60+ Active Free Tools
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

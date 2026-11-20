@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { TOOLS } from "@/lib/tools-registry";
+import { BLOG_POSTS } from "@/lib/blog-data";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://freeyoutubetools.com";
 
@@ -11,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: APP_URL,
       lastModified: now,
       changeFrequency: "daily",
-      priority: 1,
+      priority: 1.0,
     },
     {
       url: `${APP_URL}/tools`,
@@ -58,5 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: tool.popular ? 0.85 : 0.75,
   }));
 
-  return [...staticRoutes, ...toolRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+    url: `${APP_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...toolRoutes, ...blogRoutes];
 }

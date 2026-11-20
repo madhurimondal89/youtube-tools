@@ -6,11 +6,26 @@ import { FeaturedTools } from "@/components/home/featured-tools";
 import { HowItWorks } from "@/components/home/how-it-works";
 
 export const metadata: Metadata = {
-  title: "YouTube Creator Toolkit Pro — 60+ Pro YouTube Tools for Creators",
+  title: "YouTube Creator Toolkit Pro — 60+ Free YouTube Tools",
   description:
     "60+ Pro YouTube tools for creators — AI script writer, tag extractor, SEO audit, monetization checker, HD thumbnail downloader, and revenue calculators. 100% Free.",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    title: "YouTube Creator Toolkit Pro — 60+ Free YouTube Tools",
+    description:
+      "60+ Pro YouTube tools for creators — AI script writer, tag extractor, SEO audit, monetization checker, HD thumbnail downloader, and revenue calculators. 100% Free.",
+    url: "https://freeyoutubetools.com",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "YouTube Creator Toolkit Pro",
+      },
+    ],
   },
 };
 
@@ -22,22 +37,22 @@ const websiteJsonLd = {
     {
       "@type": "Organization",
       "@id": `${APP_URL}/#organization`,
-      name: "Free YouTube Tools Pro",
+      name: "YouTube Creator Toolkit Pro",
       url: APP_URL,
       logo: `${APP_URL}/icon.svg`,
       contactPoint: {
         "@type": "ContactPoint",
-        email: "madhurimondal89@gmail.com",
+        email: "support@freeyoutubetools.com",
         contactType: "customer support",
       },
     },
     {
       "@type": "WebSite",
       "@id": `${APP_URL}/#website`,
-      name: "Free YouTube Tools Pro",
+      name: "YouTube Creator Toolkit Pro",
       url: APP_URL,
       description:
-        "55+ pro YouTube tools for creators — AI scriptwriting, SEO tags, analytics, thumbnail tools, and calculators.",
+        "60+ pro YouTube tools for creators — AI scriptwriting, SEO tags, analytics, thumbnail tools, and calculators.",
       publisher: { "@id": `${APP_URL}/#organization` },
       potentialAction: {
         "@type": "SearchAction",

@@ -10,6 +10,21 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "yt3.googleusercontent.com" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.freeyoutubetools.com",
+          },
+        ],
+        destination: "https://freeyoutubetools.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
