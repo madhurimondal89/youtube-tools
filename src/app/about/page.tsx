@@ -15,15 +15,11 @@ export default function AboutPage() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Hero */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-500 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Built For Creators By Creators</span>
-          </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
             About <span className="gradient-text">YouTube Creator Toolkit Pro</span>
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            We build free, fast, and accessible creator utilities to help YouTubers grow channels, optimize search visibility, and streamline video production.
+            We build free, fast, and accessible creator utilities to help YouTubers grow channels, optimize search visibility, and simplify video production.
           </p>
         </div>
 
@@ -55,7 +51,7 @@ export default function AboutPage() {
             </div>
             <h3 className="font-bold text-base text-foreground">Complete Creator Suite</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              From HD thumbnail downloads and transcript extraction to AI video scripting and monetization calculators — everything under one roof.
+              From HD thumbnail downloads and transcript extraction to AI video scripting and monetization calculators inside a single toolkit.
             </p>
           </div>
         </div>
@@ -64,7 +60,7 @@ export default function AboutPage() {
         <div className="rounded-2xl border border-border bg-card/60 p-8 space-y-6">
           <h2 className="text-2xl font-bold text-foreground">Why We Started</h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Content creation is harder than ever. Creators spend countless hours jumping between fragmented websites just to download a thumbnail, check tag SEO, extract audio, or brainstorm titles — only to encounter aggressive ads, paywalls, or mandatory signups.
+            Content creation is harder than ever. Creators spend countless hours jumping between fragmented websites just to download a thumbnail, check tag SEO, extract audio, or brainstorm titles, only to encounter aggressive ads, paywalls, or mandatory signups.
           </p>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             YouTube Creator Toolkit Pro was built to eliminate that friction. We engineered a blazing fast Next.js web application equipped with direct YouTube stream resolvers, Google Gemini AI integration, and real-time audio/video processing engines.
@@ -73,7 +69,7 @@ export default function AboutPage() {
 
         {/* Call to action */}
         <div className="text-center pt-6 space-y-4">
-          <h3 className="text-xl font-bold text-foreground">Ready to elevate your YouTube workflow?</h3>
+          <h3 className="text-xl font-bold text-foreground">Ready to grow your YouTube channel?</h3>
           <div className="flex justify-center gap-4">
             <Link
               href="/tools"

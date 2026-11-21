@@ -197,7 +197,7 @@ export function ToolInputForm({
             <div className="flex items-center justify-between rounded-xl bg-red-500/10 border border-red-500/20 px-3.5 py-2 text-xs text-red-700 dark:text-red-300">
               <div className="flex items-center gap-2">
                 <span className="flex h-2 w-2 rounded-full bg-emerald-500" />
-                <span className="font-semibold">⚡ Direct YouTube API Quota Active</span>
+                <span className="font-semibold">Direct YouTube API Quota Active</span>
               </div>
               <button
                 type="button"
@@ -220,7 +220,7 @@ export function ToolInputForm({
                 onClick={() => openModal("youtube")}
                 className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap cursor-pointer sm:ml-auto"
               >
-                Optional: Connect YouTube Key →
+                Optional: Connect YouTube Key
               </button>
             </div>
           )}
@@ -247,8 +247,8 @@ export function ToolInputForm({
                   disabled={loading}
                 />
                 <div className="flex items-center justify-between mt-1 px-1 text-[11px] text-muted-foreground">
-                  <span>💡 Tip: Type your text OR paste any YouTube video URL to auto-analyze its description.</span>
-                  <span className="font-mono">{input.length} characters</span>
+                  <span>Tip: Type your text or paste any YouTube video URL to auto-analyze its description.</span>
+                  <span>{input.length} characters</span>
                 </div>
               </div>
             ) : (

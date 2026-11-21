@@ -34,7 +34,7 @@ export default function ContactPage() {
                 href="mailto:support@freeyoutubetools.com"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
               >
-                support@freeyoutubetools.com →
+                support@freeyoutubetools.com
               </a>
             </div>
           </div>

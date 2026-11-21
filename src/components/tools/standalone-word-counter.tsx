@@ -208,7 +208,7 @@ export function StandaloneWordCounter() {
               <button
                 type="button"
                 onClick={handleClear}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-border bg-card hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors cursor-pointer text-muted-foreground"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-border/60 bg-muted/40 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors cursor-pointer text-muted-foreground"
                 title="Clear all text"
               >
                 <Trash2 className="w-3.5 h-3.5" />
@@ -291,7 +291,7 @@ export function StandaloneWordCounter() {
               type="button"
               onClick={handleDownloadTxt}
               disabled={!text}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-border bg-card hover:bg-accent text-foreground font-semibold text-xs transition-colors shadow-sm disabled:opacity-40 cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-border/60 bg-muted/40 hover:bg-accent text-foreground font-semibold text-xs transition-colors shadow-sm disabled:opacity-40 cursor-pointer"
             >
               <Download className="w-3.5 h-3.5 text-muted-foreground" />
               Download TXT
@@ -487,7 +487,7 @@ export function StandaloneWordCounter() {
             </div>
             <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
               <div
-                className={`h-full transition-all duration-300 ${
+                className={`h-full transition-transform duration-300 ${
                   stats.charsWithSpaces > 100
                     ? "bg-destructive"
                     : stats.charsWithSpaces <= 60
@@ -509,7 +509,7 @@ export function StandaloneWordCounter() {
             </div>
             <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
               <div
-                className={`h-full transition-all duration-300 ${
+                className={`h-full transition-transform duration-300 ${
                   stats.charsWithSpaces > 5000 ? "bg-destructive" : "bg-emerald-500"
                 }`}
                 style={{ width: `${Math.min(100, (stats.charsWithSpaces / 5000) * 100)}%` }}

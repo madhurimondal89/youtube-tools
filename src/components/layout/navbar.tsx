@@ -103,7 +103,7 @@ export function Navbar() {
                             href="/tools"
                             className="flex items-center justify-center gap-1 py-1.5 text-xs font-bold text-primary hover:underline"
                           >
-                            Explore all 60+ tools →
+                            Explore all 60+ tools
                           </Link>
                         </div>
                       </div>
@@ -135,7 +135,7 @@ export function Navbar() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => openModal()}
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl border transition-colors ${
                   hasAnyKey
                     ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 shadow-sm"
                     : "border-border/80 bg-accent/40 text-foreground hover:bg-accent hover:border-border"
@@ -226,11 +226,11 @@ export function Navbar() {
                 {hasAnyKey ? (
                   <span className="text-xs bg-emerald-500 text-white px-2 py-0.5 rounded-full font-bold">Active</span>
                 ) : (
-                  <span className="text-xs text-muted-foreground font-normal">Connect free key →</span>
+                  <span className="text-xs text-muted-foreground font-normal">Connect free key</span>
                 )}
               </button>
               <div className="pt-4 border-t border-border">
-                <p className="px-4 pb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                <p className="px-4 pb-2 text-xs font-semibold text-muted-foreground">
                   Tool Categories
                 </p>
                 {categories.map(([key, cat]) => (

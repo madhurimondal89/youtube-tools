@@ -313,7 +313,7 @@ export function StandaloneTitleCapitalizer() {
           <div>
             <h2 className="font-bold text-lg text-foreground flex items-center gap-2">
               <Type className="w-5 h-5 text-amber-500" />
-              Capitalize My Title — Instant Case Converter
+              Capitalize My Title: Instant Case Converter
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
               Type or paste your video title below. Choose any format and copy instantly.
@@ -323,7 +323,7 @@ export function StandaloneTitleCapitalizer() {
             <button
               type="button"
               onClick={handleClear}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-border bg-card hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors cursor-pointer text-muted-foreground self-end sm:self-auto"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-border/60 bg-muted/40 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors cursor-pointer text-muted-foreground self-end sm:self-auto"
             >
               <Trash2 className="w-3.5 h-3.5" />
               Clear
@@ -383,7 +383,7 @@ export function StandaloneTitleCapitalizer() {
 
         {/* Case Style Selector Pills */}
         <div className="mt-5 pt-4 border-t border-border/60">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2.5">
+          <label className="text-xs font-semibold text-muted-foreground block mb-2.5">
             Select Capitalization Style:
           </label>
           <div className="flex flex-wrap gap-2">
@@ -392,7 +392,7 @@ export function StandaloneTitleCapitalizer() {
                 key={style.id}
                 type="button"
                 onClick={() => setSelectedCase(style.id)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
                   selectedCase === style.id
                     ? "bg-amber-500 text-white shadow-md shadow-amber-500/20 scale-[1.02]"
                     : "border border-border bg-muted/30 text-foreground hover:bg-accent"
@@ -410,7 +410,7 @@ export function StandaloneTitleCapitalizer() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-500">
+              <span className="text-xs font-semibold text-amber-500">
                 Converted Output
               </span>
               <span className="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-semibold">
@@ -495,7 +495,7 @@ export function StandaloneTitleCapitalizer() {
                   <button
                     type="button"
                     onClick={() => copyText(fmt.result, fmt.id)}
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-border bg-card hover:bg-accent transition-colors shadow-sm cursor-pointer min-w-[85px]"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-border/60 bg-muted/40 hover:bg-accent transition-colors shadow-sm cursor-pointer min-w-[85px]"
                   >
                     {copiedId === fmt.id ? (
                       <>

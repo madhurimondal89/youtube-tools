@@ -118,7 +118,7 @@ export function renderAIResults(toolId: string, data: Record<string, unknown>) {
             {ideas.map((idea, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl border border-border bg-muted/20 hover:border-primary/40 transition-all flex flex-col justify-between gap-3"
+                className="p-4 rounded-xl border border-border bg-muted/20 hover:border-primary/40 transition-colors flex flex-col justify-between gap-3"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
@@ -127,7 +127,7 @@ export function renderAIResults(toolId: string, data: Record<string, unknown>) {
                     </span>
                     {idea.estimatedViews && (
                       <span className="text-[11px] font-bold text-emerald-500">
-                        🔥 {idea.estimatedViews} views
+                        {idea.estimatedViews} views
                       </span>
                     )}
                   </div>
@@ -333,7 +333,7 @@ export function renderAIResults(toolId: string, data: Record<string, unknown>) {
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground">{t.angle}</p>
-                <div className="text-[10px] font-bold text-primary uppercase">{t.potential}</div>
+                <div className="text-[10px] font-bold text-primary">{t.potential}</div>
               </div>
             ))}
           </div>
@@ -355,7 +355,7 @@ export function renderAIResults(toolId: string, data: Record<string, unknown>) {
 
           <div className="space-y-4">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">
+              <h4 className="text-xs font-semibold text-muted-foreground mb-2">
                 Key Insights
               </h4>
               <ul className="space-y-2">
@@ -370,7 +370,7 @@ export function renderAIResults(toolId: string, data: Record<string, unknown>) {
 
             {actions.length > 0 && (
               <div className="pt-3 border-t border-border/50">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-500 mb-2">
+                <h4 className="text-xs font-semibold text-emerald-500 mb-2">
                   Actionable Checklist
                 </h4>
                 <ul className="space-y-2">
@@ -440,8 +440,8 @@ export function renderAIResults(toolId: string, data: Record<string, unknown>) {
           </div>
 
           <div className="flex gap-4 text-xs font-medium text-muted-foreground">
-            <span>⏱️ Target Pace: <strong className="text-foreground">{pace}</strong></span>
-            <span>🎙️ Duration: <strong className="text-foreground">{length}</strong></span>
+            <span>Target Pace: <strong className="text-foreground">{pace}</strong></span>
+            <span>Duration: <strong className="text-foreground">{length}</strong></span>
           </div>
 
           <pre className="p-4 rounded-xl bg-muted/60 text-xs font-mono whitespace-pre-wrap border border-border leading-relaxed">

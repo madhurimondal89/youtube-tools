@@ -198,8 +198,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                 {sec.tips && sec.tips.length > 0 && (
                   <div className="rounded-xl border border-border bg-card p-5 space-y-2 mt-3">
-                    <div className="font-semibold text-xs text-primary uppercase tracking-wider">
-                      💡 Pro Tips
+                    <div className="font-semibold text-xs text-primary">
+                      Pro Tips
                     </div>
                     <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-foreground/90">
                       {sec.tips.map((tip, k) => (
@@ -222,7 +222,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               href="/tools"
               className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
             >
-              Browse All Free Tools →
+              Browse All Free Tools
             </Link>
           </div>
         </div>

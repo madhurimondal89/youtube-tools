@@ -311,7 +311,7 @@ export function renderCalculatorResults(toolId: string, data: Record<string, unk
           {/* Realistic Launch Scenario Breakdown */}
           {projections && (
             <div className="space-y-2.5 pt-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+              <h4 className="text-xs font-bold text-muted-foreground flex items-center gap-1.5">
                 <TrendingUp className="w-3.5 h-3.5 text-primary" /> Launch Scenarios & Benchmarks
               </h4>
               <div className="grid sm:grid-cols-3 gap-3">

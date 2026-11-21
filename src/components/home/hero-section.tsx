@@ -28,7 +28,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden py-16">
+    <section className="relative min-h-[75dvh] flex items-center justify-center overflow-hidden py-16">
       {/* Static background gradients */}
       <div className="absolute inset-0 hero-gradient" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_hsl(var(--background))_70%)]" />
@@ -41,7 +41,7 @@ export function HeroSection() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-500 text-xs sm:text-sm font-semibold mb-6 shadow-sm">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>60+ Pro YouTube Creator Tools — No Signup Required</span>
+          <span>60+ Pro YouTube Creator Tools, No Signup Required</span>
           <Sparkles className="w-3.5 h-3.5" />
         </div>
 
@@ -54,7 +54,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-          Extract competitor tags, write viral AI scripts, audit channel SEO, download HD thumbnails, and calculate revenue — 100% free with no signup.
+          Extract competitor tags, write viral AI scripts, audit channel SEO, download HD thumbnails, and calculate revenue, completely free with no signup.
         </p>
 
         {/* Search Box */}
@@ -72,7 +72,7 @@ export function HeroSection() {
                 className="px-4 py-3.5 bg-muted/50 text-xs sm:text-sm font-semibold border-b sm:border-b-0 sm:border-r border-border outline-none cursor-pointer text-foreground"
               >
                 {TOOLS.map((t) => (
-                  <option key={t.slug} value={t.slug} className="bg-card text-foreground">
+                  <option key={t.slug} value={t.slug} className="bg-background text-foreground">
                     {t.name}
                   </option>
                 ))}

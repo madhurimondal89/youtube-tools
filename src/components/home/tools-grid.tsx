@@ -54,7 +54,7 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
             All <span className="gradient-text">60+ Pro YouTube Tools</span>
           </TitleComponent>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Everything you need to download, analyze, script, optimize, and grow your YouTube channel. 100% free with no signup required.
+            Download, analyze, script, optimize, and grow your YouTube channel with free utilities. No signup required.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
               placeholder="Search tools by name, action (e.g. download, subtitles, tags, script)..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-11 pr-10 py-3.5 rounded-2xl border border-border bg-card/90 shadow-sm text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-muted-foreground/70"
+              className="w-full pl-11 pr-10 py-3.5 rounded-2xl border border-border bg-card/90 shadow-sm text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-foreground placeholder:text-muted-foreground/70"
             />
             {search && (
               <button
@@ -91,7 +91,7 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                 key={cat.key}
                 type="button"
                 onClick={() => setActiveCategory(cat.key)}
-                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
                   isActive
                     ? "bg-primary text-primary-foreground shadow-md shadow-primary/25 font-semibold scale-[1.02]"
                     : "bg-card border border-border hover:border-border/80 hover:bg-accent/50 text-muted-foreground hover:text-foreground shadow-sm"
@@ -170,7 +170,7 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                 href={`/tools/${tool.slug}`}
                 className="group block h-full select-none"
               >
-                <div className="h-full rounded-2xl border border-border bg-card p-5 transition-all duration-150 hover:border-primary/60 hover:bg-accent/20 hover:shadow-md flex flex-col justify-between">
+                <div className="h-full rounded-2xl border border-border bg-card p-5 transition-colors duration-150 hover:border-primary/60 hover:bg-accent/20 hover:shadow-md flex flex-col justify-between">
                   <div>
                     <div className="flex items-start gap-3 mb-3">
                       <div
@@ -187,7 +187,7 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                             {tool.name}
                           </h3>
                           {tool.isAI && (
-                            <span className="shrink-0 px-1.5 py-0.5 text-[9px] font-bold bg-gradient-to-r from-red-500 to-purple-500 text-white rounded">
+                            <span className="shrink-0 px-1.5 py-0.5 text-[9px] font-bold bg-gradient-to-r from-red-500 to-rose-600 text-white rounded">
                               AI
                             </span>
                           )}

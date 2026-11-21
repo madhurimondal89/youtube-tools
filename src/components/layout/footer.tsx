@@ -88,7 +88,7 @@ export function Footer() {
                   href="/tools"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  All Tools →
+                  All Tools
                 </Link>
               </li>
             </ul>

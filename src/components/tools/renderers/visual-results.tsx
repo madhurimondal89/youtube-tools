@@ -82,7 +82,7 @@ export function renderVisualResults(toolId: string, data: Record<string, unknown
         <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
             <div>
-              <h3 className="font-semibold text-lg">{channel} — Official Channel Banner</h3>
+              <h3 className="font-semibold text-lg">{channel}: Official Channel Banner</h3>
               <p className="text-xs text-muted-foreground mt-0.5">High-definition 2560 × 1440 YouTube Banner</p>
             </div>
             {bannerUrl && (
@@ -122,7 +122,7 @@ export function renderVisualResults(toolId: string, data: Record<string, unknown
         <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
             <div>
-              <h3 className="font-semibold text-lg">{channel} — HD Profile Avatar</h3>
+              <h3 className="font-semibold text-lg">{channel}: HD Profile Avatar</h3>
               <p className="text-xs text-muted-foreground mt-0.5">High-resolution 800 × 800 Channel Icon</p>
             </div>
             {avatarUrl && (
@@ -152,7 +152,7 @@ export function renderVisualResults(toolId: string, data: Record<string, unknown
           {pictures.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               {pictures.map((pic, idx) => (
-                <div key={idx} className="p-3 rounded-xl border border-border bg-card flex items-center justify-between shadow-sm">
+                <div key={idx} className="p-3 rounded-xl border border-border/60 bg-muted/30 flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold text-foreground">{pic.label}</div>
                     <div className="text-[11px] text-muted-foreground">{pic.size}</div>
@@ -198,7 +198,7 @@ export function renderVisualResults(toolId: string, data: Record<string, unknown
               />
             </div>
             <div className="p-4 rounded-xl border border-border bg-muted/20 space-y-3 flex flex-col justify-center">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Snapshot Specs</h4>
+              <h4 className="text-xs font-semibold text-muted-foreground">Snapshot Specs</h4>
               <div className="text-xs space-y-1 text-foreground">
                 <div>• Resolution: <strong>1920 × 1080 Full HD</strong></div>
                 <div>• Format: <strong>Uncompressed PNG / WebP</strong></div>
@@ -303,7 +303,7 @@ export function renderVisualResults(toolId: string, data: Record<string, unknown
           <div className="grid sm:grid-cols-3 gap-3">
             {styles.map((s, i) => (
               <div key={i} className="p-4 rounded-xl border border-border bg-muted/20 space-y-2">
-                <div className="text-[10px] font-bold uppercase text-muted-foreground">{s.name}</div>
+                <div className="text-[10px] font-semibold text-muted-foreground">{s.name}</div>
                 <div className="text-sm font-black text-foreground">{s.sample}</div>
                 <CopyBtn text={s.sample} label="Copy Style" />
               </div>

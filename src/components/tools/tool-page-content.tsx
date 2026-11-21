@@ -82,10 +82,6 @@ export function ToolPageContent({ tool, initialUrl, initialQuery }: ToolPageCont
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-500 mb-6 shadow-inner">
             <Clock className="w-8 h-8" />
           </div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-semibold mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Dedicated Subdomain Engine Coming Soon</span>
-          </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-3">
             {tool.name} is Moving to a Dedicated Subdomain
           </h2>

@@ -39,12 +39,12 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
           <div className="space-y-3">
             <div className="p-3.5 rounded-xl border border-border bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div className="min-w-0">
-                <span className="text-[10px] font-bold uppercase text-muted-foreground block mb-0.5">Full Timestamp Link</span>
+                <span className="text-[10px] font-bold text-muted-foreground block mb-0.5">Full Timestamp Link</span>
                 <span className="font-mono text-xs text-foreground truncate block">{link}</span>
               </div>
               <div className="flex gap-2 shrink-0">
                 <CopyBtn text={link} label="Copy Link" />
-                <a href={link} target="_blank" rel="noreferrer" className="p-2 rounded-lg border border-border bg-card hover:bg-accent">
+                <a href={link} target="_blank" rel="noreferrer" className="p-2 rounded-lg border border-border/60 bg-muted/40 hover:bg-accent">
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -53,7 +53,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
             {short && (
               <div className="p-3.5 rounded-xl border border-border bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="min-w-0">
-                  <span className="text-[10px] font-bold uppercase text-muted-foreground block mb-0.5">Short youtu.be Link</span>
+                  <span className="text-[10px] font-bold text-muted-foreground block mb-0.5">Short youtu.be Link</span>
                   <span className="font-mono text-xs text-foreground truncate block">{short}</span>
                 </div>
                 <CopyBtn text={short} label="Copy Short Link" />
@@ -162,55 +162,55 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
 
               <div className={`${videoId ? "md:col-span-2" : "md:col-span-3"} grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs`}>
                 <div className="p-3.5 rounded-xl border border-border/70 bg-muted/20">
-                  <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">URL Routing Type</span>
+                  <span className="font-bold text-muted-foreground text-[10px] block mb-1">URL Routing Type</span>
                   <span className="font-semibold text-foreground text-sm capitalize">{urlType}</span>
                 </div>
 
                 {videoId ? (
                   <div className="p-3.5 rounded-xl border border-border/70 bg-muted/20">
-                    <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Standard Video ID</span>
+                    <span className="font-bold text-muted-foreground text-[10px] block mb-1">Standard Video ID</span>
                     <span className="font-mono text-foreground font-semibold text-sm">{videoId}</span>
                   </div>
                 ) : null}
 
                 {timestamp ? (
                   <div className="p-3.5 rounded-xl border border-border/70 bg-muted/20">
-                    <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Start Time / Timestamp</span>
+                    <span className="font-bold text-muted-foreground text-[10px] block mb-1">Start Time / Timestamp</span>
                     <span className="font-mono text-foreground font-semibold text-sm flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-amber-500" /> {timestamp}
                     </span>
                   </div>
                 ) : (
                   <div className="p-3.5 rounded-xl border border-border/70 bg-muted/20">
-                    <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Timestamp</span>
+                    <span className="font-bold text-muted-foreground text-[10px] block mb-1">Timestamp</span>
                     <span className="text-muted-foreground text-xs">None (Plays from 0:00)</span>
                   </div>
                 )}
 
                 {playlistId ? (
                   <div className="p-3.5 rounded-xl border border-border/70 bg-muted/20">
-                    <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Playlist ID</span>
+                    <span className="font-bold text-muted-foreground text-[10px] block mb-1">Playlist ID</span>
                     <span className="font-mono text-foreground font-semibold text-xs truncate block">{playlistId}</span>
                   </div>
                 ) : null}
 
                 {channelId ? (
                   <div className="p-3.5 rounded-xl border border-border/70 bg-muted/20">
-                    <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Channel ID</span>
+                    <span className="font-bold text-muted-foreground text-[10px] block mb-1">Channel ID</span>
                     <span className="font-mono text-foreground font-semibold text-xs truncate block">{channelId}</span>
                   </div>
                 ) : null}
 
                 {username ? (
                   <div className="p-3.5 rounded-xl border border-border/70 bg-muted/20">
-                    <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Channel Handle / User</span>
+                    <span className="font-bold text-muted-foreground text-[10px] block mb-1">Channel Handle / User</span>
                     <span className="font-mono text-foreground font-semibold text-xs">@{username}</span>
                   </div>
                 ) : null}
 
                 {clipId ? (
                   <div className="p-3.5 rounded-xl border border-border/70 bg-muted/20">
-                    <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Clip ID</span>
+                    <span className="font-semibold text-muted-foreground text-[10px] block mb-1">Clip ID</span>
                     <span className="font-mono text-foreground font-semibold text-xs truncate block">{clipId}</span>
                   </div>
                 ) : null}
@@ -232,12 +232,12 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
                 {/* Canonical Watch URL */}
                 <div className="p-3.5 rounded-xl border border-border bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                   <div className="min-w-0 flex-1">
-                    <span className="text-[10px] font-bold uppercase text-muted-foreground block mb-0.5">Clean Canonical URL</span>
+                    <span className="text-[10px] font-semibold text-muted-foreground block mb-0.5">Clean Canonical URL</span>
                     <span className="font-mono text-foreground truncate block">{cleanUrl}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <CopyBtn text={cleanUrl} label="Copy Link" />
-                    <a href={cleanUrl} target="_blank" rel="noreferrer" className="p-1.5 rounded-lg border border-border bg-card hover:bg-accent text-muted-foreground hover:text-foreground">
+                    <a href={cleanUrl} target="_blank" rel="noreferrer" className="p-1.5 rounded-lg border border-border/60 bg-muted/40 hover:bg-accent text-muted-foreground hover:text-foreground">
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -247,12 +247,12 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
                 {shortUrl && (
                   <div className="p-3.5 rounded-xl border border-border bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                     <div className="min-w-0 flex-1">
-                      <span className="text-[10px] font-bold uppercase text-muted-foreground block mb-0.5">Short Share Link (youtu.be)</span>
+                      <span className="text-[10px] font-semibold text-muted-foreground block mb-0.5">Short Share Link (youtu.be)</span>
                       <span className="font-mono text-primary font-medium truncate block">{shortUrl}</span>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       <CopyBtn text={shortUrl} label="Copy Short Link" />
-                      <a href={shortUrl} target="_blank" rel="noreferrer" className="p-1.5 rounded-lg border border-border bg-card hover:bg-accent text-muted-foreground hover:text-foreground">
+                      <a href={shortUrl} target="_blank" rel="noreferrer" className="p-1.5 rounded-lg border border-border/60 bg-muted/40 hover:bg-accent text-muted-foreground hover:text-foreground">
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     </div>
@@ -263,7 +263,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
                 {embedUrl && (
                   <div className="p-3.5 rounded-xl border border-border bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                     <div className="min-w-0 flex-1">
-                      <span className="text-[10px] font-bold uppercase text-muted-foreground block mb-0.5">Direct Player Embed URL</span>
+                      <span className="text-[10px] font-semibold text-muted-foreground block mb-0.5">Direct Player Embed URL</span>
                       <span className="font-mono text-foreground truncate block">{embedUrl}</span>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
@@ -276,7 +276,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
                 {embedIframe && (
                   <div className="p-3.5 rounded-xl border border-border bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                     <div className="min-w-0 flex-1">
-                      <span className="text-[10px] font-bold uppercase text-muted-foreground block mb-0.5">HTML iframe Embed Code</span>
+                      <span className="text-[10px] font-semibold text-muted-foreground block mb-0.5">HTML iframe Embed Code</span>
                       <span className="font-mono text-xs text-muted-foreground truncate block">{embedIframe}</span>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
@@ -313,7 +313,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
                   return (
                     <div key={key} className="p-3 rounded-xl border border-border/70 bg-muted/20">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-mono font-bold text-primary text-xs uppercase">{key}</span>
+                        <span className="font-mono font-semibold text-primary text-xs">{key}</span>
                         <span className="text-[10px] text-muted-foreground">{desc}</span>
                       </div>
                       <span className="font-mono text-foreground break-all text-xs block font-medium">{val}</span>
@@ -452,8 +452,8 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
             <p className="text-xs text-muted-foreground mt-0.5">Browser source URL for OBS / Streamlabs countdowns.</p>
           </div>
 
-          <div className="p-8 rounded-2xl bg-gradient-to-r from-red-600 to-purple-600 text-center text-white space-y-2 shadow-lg">
-            <div className="text-xs uppercase tracking-widest font-bold opacity-80">Stream Starting In</div>
+          <div className="p-8 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 text-center text-white space-y-2 shadow-lg">
+            <div className="text-xs font-bold opacity-80">Stream Starting In</div>
             <div className="text-5xl font-black font-mono">04 : 59</div>
           </div>
         </div>
@@ -505,7 +505,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
                 href={feedUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="p-3 rounded-xl border border-border bg-card hover:bg-accent shrink-0 transition-colors"
+                className="p-3 rounded-xl border border-border/60 bg-muted/40 hover:bg-accent shrink-0 transition-colors"
                 title="Open XML Feed in new tab"
               >
                 <ExternalLink className="w-4 h-4" />
@@ -514,9 +514,9 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
           </div>
 
           <div className="pt-2 border-t border-border/40 text-[11px] text-muted-foreground flex flex-wrap gap-4">
-            <span>✅ Discord Webhook ready</span>
-            <span>✅ Feedly &amp; Inoreader compatible</span>
-            <span>✅ Zapier / Make automations</span>
+            <span>Discord Webhook ready</span>
+            <span>Feedly &amp; Inoreader compatible</span>
+            <span>Zapier / Make automations</span>
           </div>
         </div>
       );
@@ -620,7 +620,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
             <div>
               <h3 className="font-semibold text-lg flex items-center gap-2">
                 <Type className="w-5 h-5 text-amber-500" />
-                Capitalize My Title — Multi-Case Converter
+                Capitalize My Title: Multi-Case Converter
               </h3>
               <p className="text-xs text-muted-foreground mt-0.5">
                 Instant conversion to standard AP, Chicago, Title Case, and YouTube High-CTR capitalization.
@@ -726,7 +726,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl border border-border bg-card/60 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">YouTube Platform Limit Compliance</h4>
+              <h4 className="text-xs font-semibold text-muted-foreground">YouTube Platform Limit Compliance</h4>
               {limits.youtubeDescription && (
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs">
@@ -735,7 +735,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
                   </div>
                   <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all ${limits.youtubeDescription.current > 5000 ? "bg-red-500" : "bg-emerald-500"}`}
+                      className={`h-full rounded-full transition-transform ${limits.youtubeDescription.current > 5000 ? "bg-red-500" : "bg-emerald-500"}`}
                       style={{ width: `${Math.min(100, limits.youtubeDescription.pct)}%` }}
                     />
                   </div>
@@ -751,7 +751,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
                   </div>
                   <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all ${limits.youtubeTitle.current > 100 ? "bg-red-500" : limits.youtubeTitle.current > 60 ? "bg-amber-500" : "bg-emerald-500"}`}
+                      className={`h-full rounded-full transition-transform ${limits.youtubeTitle.current > 100 ? "bg-red-500" : limits.youtubeTitle.current > 60 ? "bg-amber-500" : "bg-emerald-500"}`}
                       style={{ width: `${Math.min(100, limits.youtubeTitle.pct)}%` }}
                     />
                   </div>
@@ -761,7 +761,7 @@ export function renderProductivityResults(toolId: string, data: Record<string, u
             </div>
 
             <div className="p-4 rounded-xl border border-border bg-card/60 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Top Keyword Frequency</h4>
+              <h4 className="text-xs font-bold text-muted-foreground">Top Keyword Frequency</h4>
               {topKeywords.length > 0 ? (
                 <div className="grid grid-cols-2 gap-2">
                   {topKeywords.map((kw, i) => (

@@ -233,7 +233,7 @@ function MediaDownloadButton({
         <button
           onClick={handleDownload}
           disabled={status === "loading"}
-          className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold shadow transition-all cursor-pointer ${
+          className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold shadow transition-colors cursor-pointer ${
             status === "loading"
               ? "bg-primary/80 text-primary-foreground opacity-90 cursor-wait"
               : status === "done"
@@ -284,7 +284,7 @@ function MediaDownloadButton({
         <div className="flex flex-col items-end gap-2 mt-1 p-2.5 rounded-xl bg-card border border-rose-500/20 shadow-md max-w-[320px]">
           {errorMessage ? (
             <span className="text-[10px] text-rose-400 font-medium text-right leading-relaxed">
-              ⚠️ Server bot protection triggered. Please use instant mirrors below:
+              Server bot protection triggered. Please use instant mirrors below:
             </span>
           ) : null}
           {videoId ? (
@@ -296,7 +296,7 @@ function MediaDownloadButton({
                 className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold shadow-sm transition-colors"
               >
                 <Download className="w-3 h-3" />
-                <span>SSYouTube Mirror ⚡</span>
+                <span>SSYouTube Mirror</span>
               </a>
               <a
                 href={`https://www.y2mate.com/youtube/${videoId}`}
@@ -393,7 +393,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
                     return (
                       <div
                         key={idx}
-                        className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
+                        className={`flex items-center justify-between p-3 rounded-xl border transition-colors ${
                           fmt.recommended
                             ? "border-primary/50 bg-primary/5 shadow-sm"
                             : "border-border bg-card/60 hover:bg-accent/40"
@@ -641,25 +641,25 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
             <div className="space-y-4">
               {/* Hook Box */}
               <div className="p-4 rounded-xl border border-purple-500/30 bg-purple-500/5 space-y-2">
-                <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-purple-400 text-xs font-bold">
                   <Flame className="w-4 h-4" /> First 15 Seconds Hook
                 </div>
                 <p className="text-sm font-medium text-foreground">{hook.spoken}</p>
-                <p className="text-xs text-muted-foreground italic">🎬 Visual Direction: {hook.visual}</p>
+                <p className="text-xs text-muted-foreground italic">Visual Direction: {hook.visual}</p>
               </div>
 
               {/* Intro Box */}
               <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-500/5 space-y-2">
-                <div className="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-blue-400 text-xs font-bold">
                   <Play className="w-4 h-4" /> Intro & Value Promise
                 </div>
                 <p className="text-sm font-medium text-foreground">{intro.spoken}</p>
-                <p className="text-xs text-muted-foreground italic">🎬 Visual Direction: {intro.visual}</p>
+                <p className="text-xs text-muted-foreground italic">Visual Direction: {intro.visual}</p>
               </div>
 
               {/* Sections */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase text-muted-foreground tracking-wider">Main Content Sections</h4>
+                <h4 className="text-xs font-bold text-muted-foreground">Main Content Sections</h4>
                 {sections.map((sec, i) => (
                   <div key={i} className="p-4 rounded-xl border border-border bg-card/60 space-y-2">
                     <div className="flex items-center justify-between">
@@ -668,8 +668,8 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
                     </div>
                     <p className="text-sm text-foreground/90 leading-relaxed">{sec.spoken}</p>
                     <div className="pt-2 border-t border-border/40 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
-                      <div>🎥 Cue: <span className="text-foreground/80">{sec.visualCue}</span></div>
-                      <div>🎞️ B-Roll: <span className="text-foreground/80">{sec.bRollSuggestion}</span></div>
+                      <div>Cue: <span className="text-foreground/80">{sec.visualCue}</span></div>
+                      <div>B-Roll: <span className="text-foreground/80">{sec.bRollSuggestion}</span></div>
                     </div>
                   </div>
                 ))}
@@ -677,7 +677,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
 
               {/* Call to action */}
               <div className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5 space-y-2">
-                <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold">
                   <Sparkles className="w-4 h-4" /> Call to Action (CTA) & Outro
                 </div>
                 <p className="text-sm font-medium">{cta.spoken}</p>
@@ -706,7 +706,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
         >
           <div className="space-y-4">
             <div className="p-3.5 rounded-xl border border-rose-500/30 bg-rose-500/5">
-              <span className="text-xs font-bold text-rose-400 uppercase">⚡ 3-Second Scroll Stopper:</span>
+              <span className="text-xs font-bold text-rose-400">3-Second Scroll Stopper:</span>
               <p className="text-sm font-semibold mt-1">{String(data.hook ?? "")}</p>
             </div>
 
@@ -719,8 +719,8 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">{step.narration}</p>
                     <div className="text-xs text-muted-foreground flex gap-4">
-                      <span>🎬 {step.screenAction}</span>
-                      <span>🔊 {step.soundEffect}</span>
+                      <span>Visual: {step.screenAction}</span>
+                      <span>Audio: {step.soundEffect}</span>
                     </div>
                   </div>
                 </div>
@@ -728,7 +728,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
             </div>
 
             <div className="p-3 rounded-xl bg-muted/60 text-xs flex justify-between items-center">
-              <span>🔄 Loop Ending: <strong>{String(data.loopEnding ?? "")}</strong></span>
+              <span>Loop Ending: <strong>{String(data.loopEnding ?? "")}</strong></span>
               <span className="text-primary font-mono">{Array.isArray(data.hashtags) ? (data.hashtags as string[]).join(" ") : ""}</span>
             </div>
           </div>
@@ -758,8 +758,8 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
                 </div>
                 <p className="text-sm font-bold text-foreground">&ldquo;{h.hookText}&rdquo;</p>
                 <div className="text-xs text-muted-foreground space-y-0.5">
-                  <p>🎬 Visual Cue: {h.visualAction}</p>
-                  <p>🧠 Psychological Trigger: {h.whyItWorks}</p>
+                  <p>Visual Cue: {h.visualAction}</p>
+                  <p>Psychological Trigger: {h.whyItWorks}</p>
                 </div>
               </div>
             ))}
@@ -812,18 +812,18 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
                             Clip #{clipNum}
                           </span>
                           <span className="text-xs px-2 py-0.5 rounded bg-muted font-mono font-medium">
-                            ⏱️ {timeRange}
+                            {timeRange}
                           </span>
                         </div>
                         <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                          🔥 {score}% Virality Score
+                          {score}% Virality Score
                         </span>
                       </div>
 
                       {s.title ? <h4 className="font-semibold text-sm text-foreground">{s.title}</h4> : null}
                       
                       <div className="p-2.5 rounded-lg bg-muted/50 border border-border/50 text-xs">
-                        <span className="font-bold text-primary">🎯 3-Sec Hook: </span>
+                        <span className="font-bold text-primary">3-Sec Hook: </span>
                         <span className="text-foreground/90">{s.hook}</span>
                       </div>
 
@@ -833,7 +833,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
 
                       {s.takeaway ? (
                         <div className="text-[11px] text-emerald-400 font-medium">
-                          💡 Key Takeaway: {s.takeaway}
+                          Key Takeaway: {s.takeaway}
                         </div>
                       ) : null}
                     </div>
@@ -877,7 +877,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
           >
             <div className="space-y-4">
               <div>
-                <h4 className="text-xs font-bold uppercase text-muted-foreground mb-1">Recommended Subject Lines:</h4>
+                <h4 className="text-xs font-bold text-muted-foreground mb-1">Recommended Subject Lines:</h4>
                 <div className="space-y-1">
                   {subjects.map((sub, i) => (
                     <div key={i} className="p-2 rounded-lg bg-muted text-xs font-medium flex justify-between items-center">
@@ -889,7 +889,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
               </div>
 
               <div>
-                <h4 className="text-xs font-bold uppercase text-muted-foreground mb-1">Email Body:</h4>
+                <h4 className="text-xs font-bold text-muted-foreground mb-1">Email Body:</h4>
                 <pre className="p-4 rounded-xl bg-muted/60 text-xs font-sans whitespace-pre-wrap leading-relaxed border border-border">
                   {String(data.emailBody ?? "")}
                 </pre>
@@ -961,7 +961,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
               ]}
             />
             <div className="mt-6 space-y-2">
-              <h4 className="text-xs font-bold uppercase text-muted-foreground">High-Volume Long Tail Keywords:</h4>
+              <h4 className="text-xs font-bold text-muted-foreground">High-Volume Long Tail Keywords:</h4>
               {related.map((rk, i) => (
                 <div key={i} className="flex items-center justify-between p-2.5 rounded-lg border border-border bg-card text-xs">
                   <span className="font-medium">{rk.keyword}</span>
@@ -998,7 +998,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
                   <span className={`text-3xl font-black ${score >= 80 ? "text-emerald-500" : score >= 60 ? "text-amber-500" : "text-red-500"}`}>
                     {score}
                   </span>
-                  <span className="absolute bottom-1 text-[10px] font-bold text-muted-foreground uppercase">/100</span>
+                  <span className="absolute bottom-1 text-[10px] font-bold text-muted-foreground">/100</span>
                 </div>
                 <div>
                   <div className="text-base font-bold text-foreground flex items-center gap-2">
@@ -1030,7 +1030,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
             {/* Score Progress Bar */}
             <div className="w-full bg-muted/60 h-2.5 rounded-full overflow-hidden border border-border/50">
               <div
-                className={`h-full transition-all duration-500 rounded-full ${
+                className={`h-full transition-transform duration-500 rounded-full ${
                   score >= 80 ? "bg-emerald-500" : score >= 60 ? "bg-amber-500" : "bg-red-500"
                 }`}
                 style={{ width: `${score}%` }}
@@ -1039,7 +1039,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
 
             {/* Checklist Items Breakdown */}
             <div className="space-y-2.5">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              <h4 className="text-xs font-bold text-muted-foreground">
                 Detailed 10-Factor Ranking Audit ({checklist.length} Checks)
               </h4>
               {checklist.map((item, idx) => {
@@ -1106,10 +1106,10 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
           <div className="space-y-6">
             {/* Desktop / Dark Feed Preview */}
             <div>
-              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-1">
+              <div className="text-xs font-semibold text-muted-foreground mb-2 px-1">
                 Desktop Feed (Dark Theme)
               </div>
-              <div className="max-w-md mx-auto rounded-2xl border border-zinc-800 bg-[#0f0f0f] text-white p-4 space-y-3 shadow-2xl">
+              <div className="max-w-md mx-auto rounded-2xl border border-zinc-800 bg-zinc-950 text-white p-4 space-y-3 shadow-2xl">
                 <div className="relative aspect-video rounded-xl overflow-hidden bg-zinc-800">
                   <Image
                     src={String(data.thumbnailUrl ?? "")}
@@ -1145,7 +1145,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
 
             {/* Mobile Feed Preview */}
             <div>
-              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-1">
+              <div className="text-xs font-semibold text-muted-foreground mb-2 px-1">
                 Mobile Feed Preview
               </div>
               <div className="max-w-sm mx-auto rounded-2xl border border-border bg-card text-card-foreground p-3 space-y-2.5 shadow-md">
@@ -1272,7 +1272,7 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
 
             {Array.isArray(data.signals) && data.signals.length > 0 ? (
               <div className="mt-4 p-4 rounded-xl border border-border bg-muted/20 text-left space-y-2">
-                <h5 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                <h5 className="text-xs font-bold text-muted-foreground">
                   Detected Monetization Signals ({data.signals.length})
                 </h5>
                 <div className="space-y-1.5">
@@ -1409,8 +1409,8 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
             </div>
 
             <div className="pt-2 border-t border-border/40 text-[11px] text-muted-foreground flex flex-wrap gap-4">
-              <span>✨ Opens &quot;Confirm Subscription&quot; modal immediately</span>
-              <span>🚀 Ideal for Instagram bio, Twitter, emails, and video descriptions</span>
+              <span>Opens &quot;Confirm Subscription&quot; modal immediately</span>
+              <span>Ideal for Instagram bio, Twitter, emails, and video descriptions</span>
             </div>
           </div>
         </ResultCard>
@@ -1478,14 +1478,14 @@ function renderResult(toolId: string, data: Record<string, unknown>) {
             </pre>
 
             <div className="flex flex-wrap items-center gap-3 text-[11px] text-muted-foreground pt-1">
-              <span>✅ 16:9 Responsive (mobile &amp; desktop auto-fit)</span>
-              <span>✅ Privacy-Enhanced (youtube-nocookie.com)</span>
-              <span>✅ Fast loading (lazy load enabled)</span>
+              <span>16:9 Responsive (mobile &amp; desktop auto-fit)</span>
+              <span>Privacy-Enhanced (youtube-nocookie.com)</span>
+              <span>Fast loading (lazy load enabled)</span>
             </div>
 
             {videoId && (
               <div className="space-y-2 pt-2 border-t border-border/50">
-                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                <div className="text-xs font-semibold text-muted-foreground">
                   Live Player Preview
                 </div>
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border bg-black shadow-lg">

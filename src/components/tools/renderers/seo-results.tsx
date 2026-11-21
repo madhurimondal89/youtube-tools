@@ -75,7 +75,7 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
           {/* Overlap stats */}
           <div className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5 space-y-2">
             <div className="flex items-center justify-between">
-              <h4 className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+              <h4 className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 Shared Keywords ({common.length})
               </h4>
               {common.length > 0 && <CopyBtn text={common.join(", ")} label="Copy Shared" />}
@@ -172,13 +172,13 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
           <div className="grid gap-4">
             {categories.map((cat, i) => (
               <div key={i} className="p-4 rounded-xl border border-border bg-muted/20 space-y-2.5">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-primary">{cat.name}</h4>
+                <h4 className="text-xs font-semibold text-primary">{cat.name}</h4>
                 <div className="flex flex-wrap gap-2">
                   {cat.topics.map((top, tIdx) => (
                     <span
                       key={tIdx}
                       onClick={() => navigator.clipboard.writeText(top)}
-                      className="px-3 py-1.5 rounded-lg border border-border bg-card hover:border-primary/40 text-xs font-medium cursor-pointer transition-colors"
+                      className="px-3 py-1.5 rounded-lg border border-border/60 bg-muted/40 hover:border-primary/40 text-xs font-medium cursor-pointer transition-colors"
                       title="Click to copy"
                     >
                       {top}
@@ -199,7 +199,7 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
         <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
             <div>
-              <h3 className="font-semibold text-lg">{channelTitle} — Channel Meta Keywords</h3>
+              <h3 className="font-semibold text-lg">{channelTitle}: Channel Meta Keywords</h3>
               <p className="text-xs text-muted-foreground mt-0.5">
                 {keywords.length > 0
                   ? `${keywords.length} channel-level SEO keywords configured in YouTube Studio.`
@@ -256,21 +256,21 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
           {/* Quick Overview Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
             <div className="p-3.5 rounded-xl border border-border bg-muted/20">
-              <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Video ID</span>
+              <span className="font-semibold text-muted-foreground text-[10px] block mb-1">Video ID</span>
               <span className="font-mono text-foreground font-semibold">{id}</span>
             </div>
             <div className="p-3.5 rounded-xl border border-border bg-muted/20">
-              <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Total Views</span>
+              <span className="font-semibold text-muted-foreground text-[10px] block mb-1">Total Views</span>
               <span className="font-mono text-foreground font-semibold">
                 {typeof views === "number" ? views.toLocaleString() : Number(views) ? Number(views).toLocaleString() : String(views)}
               </span>
             </div>
             <div className="p-3.5 rounded-xl border border-border bg-muted/20">
-              <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Published</span>
+              <span className="font-semibold text-muted-foreground text-[10px] block mb-1">Published</span>
               <span className="text-foreground font-medium">{published.split("T")[0]}</span>
             </div>
             <div className="p-3.5 rounded-xl border border-border bg-muted/20">
-              <span className="font-bold text-muted-foreground uppercase text-[10px] block mb-1">Total Tags</span>
+              <span className="font-semibold text-muted-foreground text-[10px] block mb-1">Total Tags</span>
               <span className="text-foreground font-semibold">{tags.length} SEO Tags</span>
             </div>
           </div>
@@ -278,10 +278,10 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
           {/* Tags List */}
           {tags.length > 0 && (
             <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Extracted SEO Tags ({tags.length})</h4>
+              <h4 className="text-xs font-semibold text-muted-foreground">Extracted SEO Tags ({tags.length})</h4>
               <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto p-3 rounded-xl border border-border bg-muted/10">
                 {tags.map((t: string, i: number) => (
-                  <span key={i} className="px-2.5 py-1 rounded-lg bg-card border border-border text-[11px] font-medium text-foreground">
+                  <span key={i} className="px-2.5 py-1 rounded-lg bg-muted/40 border border-border/60 text-[11px] font-medium text-foreground">
                     {t}
                   </span>
                 ))}
@@ -292,7 +292,7 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
           {/* Raw JSON Schema Inspector */}
           <div className="space-y-2 pt-2 border-t border-border/60">
             <div className="flex items-center justify-between">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Raw JSON Metadata &amp; Schema</h4>
+              <h4 className="text-xs font-semibold text-muted-foreground">Raw JSON Metadata &amp; Schema</h4>
               <span className="text-[10px] text-muted-foreground font-mono">application/json</span>
             </div>
             <pre className="p-4 rounded-xl bg-muted/60 text-[11px] font-mono whitespace-pre-wrap max-h-72 overflow-y-auto border border-border leading-relaxed text-foreground/90">
@@ -323,7 +323,7 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
             {styles.map((st, i) => (
               <div key={i} className="p-3.5 rounded-xl border border-border bg-muted/20 flex items-center justify-between gap-3">
                 <div className="min-w-0">
-                  <div className="text-[10px] font-bold text-muted-foreground uppercase mb-0.5">{st.label}</div>
+                  <div className="text-[10px] font-semibold text-muted-foreground mb-0.5">{st.label}</div>
                   <div className="text-sm font-semibold text-foreground truncate">{st.value}</div>
                 </div>
                 <CopyBtn text={st.value} label="Copy" />
@@ -380,7 +380,7 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
             <div>
               <h3 className="font-semibold text-lg">Description Keyword Density</h3>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Target 1.5% – 3.5% density per primary keyword to avoid keyword stuffing penalties.
+                Target 1.5% to 3.5% density per primary keyword to avoid keyword stuffing penalties.
               </p>
             </div>
             <div className="flex items-center gap-2 self-start sm:self-auto">
@@ -425,7 +425,7 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
                 return (
                   <div
                     key={i}
-                    className="p-3.5 rounded-xl border border-border bg-card hover:bg-muted/30 transition-all flex flex-col justify-between"
+                    className="p-3.5 rounded-xl border border-border bg-muted/20 hover:bg-muted/40 transition-colors flex flex-col justify-between"
                   >
                     <div className="flex items-start justify-between gap-1 mb-2">
                       <div className="font-bold text-sm text-foreground truncate capitalize">
@@ -484,7 +484,7 @@ export function renderSEOResults(toolId: string, data: Record<string, unknown>) 
             </div>
             <div className="text-right">
               <span className="text-2xl font-black text-emerald-500">{overall}/100</span>
-              <span className="text-[10px] block text-muted-foreground uppercase">SEO Score</span>
+              <span className="text-[10px] block text-muted-foreground">SEO Score</span>
             </div>
           </div>
 

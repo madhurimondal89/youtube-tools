@@ -57,7 +57,7 @@ export default function BlogPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {BLOG_POSTS.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
-              <div className="group rounded-2xl border border-border bg-card p-6 h-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 flex flex-col">
+              <div className="group rounded-2xl border border-border bg-card p-6 h-full hover:shadow-lg hover:border-primary/60 transition-colors duration-200 flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
                   <span
                     className={`text-xs font-semibold px-2.5 py-1 rounded-full ${

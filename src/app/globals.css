@@ -1,3 +1,5 @@
+/* Hallmark · checked: 2026-11-21 · genre: modern-minimal
+ * built: the project · redesign: polish · v2.0.0 */
 @import "tailwindcss";
 
 @theme {
@@ -20,6 +22,13 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-brand-start: hsl(0 84% 60%);
+  --color-brand-end: hsl(347 77% 50%);
+  --color-hero-glow: hsl(0 84% 60% / 0.12);
+  --color-glass-bg: hsl(0 0% 100% / 0.08);
+  --color-glass-border: hsl(0 0% 100% / 0.15);
+  --color-glass-dark-bg: hsl(0 0% 0% / 0.15);
+  --color-glass-dark-border: hsl(0 0% 100% / 0.08);
   --radius: 0.75rem;
 }
 
@@ -91,45 +100,38 @@ body {
   overflow-x: clip;
 }
 
-/* ── Gradient text ──────────────────────────────────────────────────── */
+/* ── Clean single-hue brand text ────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #ef4444, #f43f5e, #a855f7);
+  background: linear-gradient(135deg, var(--color-brand-start), var(--color-brand-end));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #60a5fa, #22d3ee, #2dd4bf);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
 }
 
 /* ── Hero gradient ──────────────────────────────────────────────────── */
 .hero-gradient {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(239, 68, 68, 0.18), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(168, 85, 247, 0.12), transparent);
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-hero-glow), transparent);
 }
 
 .dark .hero-gradient {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(239, 68, 68, 0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(168, 85, 247, 0.08), transparent);
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-hero-glow), transparent);
 }
 
 /* ── Glassmorphism ──────────────────────────────────────────────────── */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-glass-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--color-glass-border);
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--color-glass-dark-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-glass-dark-border);
 }
 
 /* ── Scrollbar ──────────────────────────────────────────────────────── */

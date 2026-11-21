@@ -76,7 +76,7 @@ export default async function ToolLayout({ children, params }: ToolLayoutProps) 
                 <div className="flex items-center gap-2 flex-wrap">
                   <h1 className="text-2xl sm:text-3xl font-bold">{tool.name}</h1>
                   {tool.isAI && (
-                    <span className="px-2 py-0.5 text-xs font-bold bg-gradient-to-r from-violet-500 to-pink-500 text-white rounded-full">
+                    <span className="px-2 py-0.5 text-xs font-semibold bg-gradient-to-r from-red-500 to-rose-600 text-white rounded-full">
                       AI Powered
                     </span>
                   )}

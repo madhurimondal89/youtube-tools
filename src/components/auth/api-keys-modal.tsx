@@ -175,7 +175,7 @@ export function ApiKeysModal() {
 
             {/* Success Banner */}
             {saveSuccessMessage && (
-              <div className="mx-6 mt-4 flex items-center gap-2 rounded-xl bg-emerald-500/15 border border-emerald-500/30 p-3 text-xs text-emerald-700 dark:text-emerald-300 animate-fadeIn">
+              <div className="mx-6 mt-4 flex items-center gap-2 rounded-xl bg-emerald-500/15 border border-emerald-500/30 p-3 text-xs text-emerald-700 dark:text-emerald-300 motion-safe:animate-fadeIn">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500" />
                 <span>{saveSuccessMessage}</span>
               </div>
@@ -242,7 +242,7 @@ export function ApiKeysModal() {
                       </a>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Powers all 22 AI scripting, title generator, and tags tools. Google gives 1,500 free requests every day with no credit card required.
+                      Powers all 22 AI scripting, title generator, and tags tools. Google provides 1,500 free requests every day at zero cost.
                     </p>
                   </div>
 
@@ -327,28 +327,28 @@ export function ApiKeysModal() {
                         onClick={() => applyPreset("groq")}
                         className="px-2.5 py-1 text-[11px] rounded-lg border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 font-medium text-amber-700 dark:text-amber-300 transition-colors"
                       >
-                        ⚡ Groq (Fast Free)
+                        Groq (Fast Free)
                       </button>
                       <button
                         type="button"
                         onClick={() => applyPreset("openrouter")}
                         className="px-2.5 py-1 text-[11px] rounded-lg border border-border bg-card hover:bg-accent font-medium text-foreground transition-colors"
                       >
-                        🌐 OpenRouter (:free)
+                        OpenRouter (:free)
                       </button>
                       <button
                         type="button"
                         onClick={() => applyPreset("deepseek")}
                         className="px-2.5 py-1 text-[11px] rounded-lg border border-border bg-card hover:bg-accent font-medium text-foreground transition-colors"
                       >
-                        🐋 DeepSeek
+                        DeepSeek
                       </button>
                       <button
                         type="button"
                         onClick={() => applyPreset("ollama")}
                         className="px-2.5 py-1 text-[11px] rounded-lg border border-border bg-card hover:bg-accent font-medium text-foreground transition-colors"
                       >
-                        💻 Ollama Local
+                        Ollama Local
                       </button>
                     </div>
                   </div>

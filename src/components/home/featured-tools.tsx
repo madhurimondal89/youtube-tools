@@ -20,11 +20,7 @@ export function FeaturedTools() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-semibold mb-3">
-            <Star className="w-3.5 h-3.5 fill-current" />
-            Most Popular Creator Tools
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-2">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-2 text-foreground">
             Start with the <span className="gradient-text">Creator Favorites</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm">
@@ -53,7 +49,7 @@ export function FeaturedTools() {
                         {tool.name}
                       </h3>
                       {tool.isAI && (
-                        <span className="px-1.5 py-0.5 text-[9px] font-bold bg-gradient-to-r from-red-500 to-purple-500 text-white rounded">
+                        <span className="px-1.5 py-0.5 text-[9px] font-bold bg-gradient-to-r from-red-500 to-rose-600 text-white rounded">
                           AI
                         </span>
                       )}

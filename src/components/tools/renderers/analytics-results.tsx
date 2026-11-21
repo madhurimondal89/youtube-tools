@@ -20,12 +20,12 @@ export function renderAnalyticsResults(toolId: string, data: Record<string, unkn
             </div>
             <div className="text-right">
               <span className="text-2xl font-black text-emerald-500">{overall}</span>
-              <span className="text-[10px] block text-muted-foreground uppercase">Channel Grade</span>
+              <span className="text-[10px] block text-muted-foreground">Channel Grade</span>
             </div>
           </div>
 
           <div className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5 space-y-2">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+            <h4 className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
               Audit Strengths ({highlights.length})
             </h4>
             <div className="space-y-1.5">
@@ -40,7 +40,7 @@ export function renderAnalyticsResults(toolId: string, data: Record<string, unkn
 
           {recommendations.length > 0 ? (
             <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-500/5 space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+              <h4 className="text-xs font-bold text-amber-600 dark:text-amber-400">
                 Actionable Optimization Priorities ({recommendations.length})
               </h4>
               <div className="space-y-1.5">
@@ -180,7 +180,7 @@ export function renderAnalyticsResults(toolId: string, data: Record<string, unkn
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5 space-y-2">
-              <h4 className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">What Viewers Loved</h4>
+              <h4 className="text-xs font-bold text-emerald-600 dark:text-emerald-400">What Viewers Loved</h4>
               <ul className="space-y-1 text-xs text-foreground/90">
                 {posList.map((p, i) => (
                   <li key={i}>• {p}</li>
@@ -188,7 +188,7 @@ export function renderAnalyticsResults(toolId: string, data: Record<string, unkn
               </ul>
             </div>
             <div className="p-4 rounded-xl border border-rose-500/30 bg-rose-500/5 space-y-2">
-              <h4 className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase">Constructive Criticisms</h4>
+              <h4 className="text-xs font-bold text-rose-600 dark:text-rose-400">Constructive Criticisms</h4>
               <ul className="space-y-1 text-xs text-foreground/90">
                 {negList.map((n, i) => (
                   <li key={i}>• {n}</li>
@@ -214,7 +214,7 @@ export function renderAnalyticsResults(toolId: string, data: Record<string, unkn
               <div key={i} className="p-3.5 rounded-xl border border-border bg-muted/20 space-y-1.5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-bold text-primary">@{c.author}</span>
-                  <span className="text-muted-foreground">👍 {c.likes} • {c.date}</span>
+                  <span className="text-muted-foreground">{c.likes} likes • {c.date}</span>
                 </div>
                 <p className="text-xs text-foreground/90 leading-relaxed">&ldquo;{c.text}&rdquo;</p>
               </div>
@@ -242,7 +242,7 @@ export function renderAnalyticsResults(toolId: string, data: Record<string, unkn
             </div>
             <div className="text-right">
               <span className="text-2xl font-black text-emerald-500">{rate}</span>
-              <span className="text-[10px] block text-muted-foreground uppercase">{rating}</span>
+              <span className="text-[10px] block text-muted-foreground">{rating}</span>
             </div>
           </div>
 
