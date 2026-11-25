@@ -20,6 +20,7 @@ import { useApiKeys } from "@/context/api-keys-context";
 
 const navLinks = [
   { href: "/tools", label: "All Tools" },
+  { href: "https://seo.freeyoutubetools.com/", label: "YouTube SEO", external: true },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -116,6 +117,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="px-4 py-2 text-sm font-medium rounded-lg hover:bg-accent transition-colors text-foreground"
                 >
                   {link.label}
@@ -200,6 +202,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="block px-4 py-3 rounded-xl hover:bg-accent font-medium transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
