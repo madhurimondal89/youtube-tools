@@ -28,39 +28,30 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[75dvh] flex items-center justify-center overflow-hidden py-16">
-      {/* Static background gradients */}
-      <div className="absolute inset-0 hero-gradient" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_hsl(var(--background))_70%)]" />
-
-      {/* Static soft ambient glows */}
-      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
-
+    <section className="relative min-h-[75dvh] flex items-center justify-center overflow-hidden py-16 border-b border-border/60 workbench-pattern">
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-500 text-xs sm:text-sm font-semibold mb-6 shadow-sm">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>60+ Pro YouTube Creator Tools, No Signup Required</span>
-          <Sparkles className="w-3.5 h-3.5" />
+        {/* Technical Status Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-border bg-card/80 text-foreground text-xs font-medium mb-6 shadow-xs">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>60+ Pro YouTube Creator Tools, Free Without Registration</span>
         </div>
 
         {/* Heading */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 text-foreground">
-          The All-In-One{" "}
-          <span className="gradient-text">YouTube Creator</span>
+          The Professional{" "}
+          <span className="accent-heading">YouTube Creator</span>
           <br />
-          Toolkit Pro
+          Toolkit
         </h1>
 
         <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-          Extract competitor tags, write viral AI scripts, audit channel SEO, download HD thumbnails, and calculate revenue, completely free with no signup.
+          Extract competitor tags, write viral scripts, audit channel SEO, download 4K thumbnails, and calculate revenue. Direct access, no credentials needed.
         </p>
 
-        {/* Search Box */}
+        {/* Workbench Search Bar */}
         <div className="w-full max-w-3xl mx-auto mb-6">
           <form onSubmit={handleSubmit}>
-            <div className="relative flex flex-col sm:flex-row rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden focus-within:border-primary transition-colors">
+            <div className="relative flex flex-col sm:flex-row rounded-xl border border-border bg-card shadow-xs overflow-hidden focus-within:border-primary/80 focus-within:ring-1 focus-within:ring-primary/30 transition-colors">
               {/* Tool Selector */}
               <select
                 value={selectedTool.slug}
@@ -69,7 +60,7 @@ export function HeroSection() {
                   if (t) setSelectedTool(t);
                 }}
                 aria-label="Select YouTube tool"
-                className="px-4 py-3.5 bg-muted/50 text-xs sm:text-sm font-semibold border-b sm:border-b-0 sm:border-r border-border outline-none cursor-pointer text-foreground"
+                className="px-4 py-3 bg-muted/40 text-xs sm:text-sm font-medium border-b sm:border-b-0 sm:border-r border-border outline-none cursor-pointer text-foreground"
               >
                 {TOOLS.map((t) => (
                   <option key={t.slug} value={t.slug} className="bg-background text-foreground">
@@ -80,20 +71,20 @@ export function HeroSection() {
 
               {/* URL / Topic Input */}
               <div className="relative flex-1 flex items-center">
-                <Search className="absolute left-4 w-4 h-4 text-muted-foreground" />
+                <Search className="absolute left-3.5 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="Paste YouTube Video / Shorts URL, Channel @handle, or topic..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3.5 bg-transparent text-sm outline-none placeholder:text-muted-foreground text-foreground"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent text-sm outline-none placeholder:text-muted-foreground text-foreground"
                 />
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="px-6 py-3.5 bg-primary text-primary-foreground text-xs sm:text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shrink-0"
+                className="px-5 py-3 bg-primary text-primary-foreground text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors shrink-0 cursor-pointer"
               >
                 <span>Run Tool</span>
                 <ArrowRight className="w-4 h-4" />
@@ -103,13 +94,13 @@ export function HeroSection() {
 
           {/* Quick Examples */}
           <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
-            <span>Try sample:</span>
+            <span className="font-medium">Quick sample:</span>
             {EXAMPLE_URLS.map((u, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setInput(u)}
-                className="font-mono text-[11px] px-2.5 py-1 rounded-lg bg-muted hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
+                className="font-mono text-[11px] px-2.5 py-1 rounded-md border border-border/60 bg-muted/30 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {u.startsWith("http") ? u.slice(0, 26) + "..." : u}
               </button>
@@ -117,14 +108,14 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Spotlight Quick Access Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto pt-2">
-          <span className="text-xs font-semibold text-muted-foreground mr-1">Popular Tools:</span>
+        {/* Popular Tools Chips */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5 max-w-3xl mx-auto pt-2">
+          <span className="text-xs font-semibold text-muted-foreground mr-1">Popular:</span>
           {POPULAR_TOOLS.map((t) => (
             <Link
               key={t.slug}
               href={`/tools/${t.slug}`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-border bg-card hover:bg-accent text-xs font-medium transition-colors text-foreground shadow-sm"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border/70 bg-card hover:border-primary/40 text-xs font-medium transition-colors text-foreground shadow-2xs"
             >
               <span>{t.shortName}</span>
             </Link>

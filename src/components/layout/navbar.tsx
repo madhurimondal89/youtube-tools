@@ -124,10 +124,9 @@ export function Navbar() {
 
               <Link
                 href="/tools/ai-script-writer"
-                className="flex items-center gap-1.5 ml-2 px-4 py-2 text-sm font-semibold rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white hover:opacity-90 transition-opacity shadow-md"
+                className="flex items-center gap-1.5 ml-2 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-2xs"
               >
-                <Sparkles className="w-4 h-4" />
-                AI Tools
+                <span>AI Tools</span>
               </Link>
             </div>
 

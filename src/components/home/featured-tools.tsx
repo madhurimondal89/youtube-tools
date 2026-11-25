@@ -21,10 +21,10 @@ export function FeaturedTools() {
         {/* Header */}
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-2 text-foreground">
-            Start with the <span className="gradient-text">Creator Favorites</span>
+            Featured <span className="accent-heading">Creator Utilities</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm">
-            These tools are used by thousands of YouTube creators daily to optimize workflow and growth.
+            Proven utilities used by thousands of creators daily to optimize workflow and channel growth.
           </p>
         </div>
 
@@ -32,24 +32,19 @@ export function FeaturedTools() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {FEATURED.map((tool) => (
             <Link key={tool.id} href={`/tools/${tool.slug}`} className="group block select-none">
-              <div className="relative rounded-2xl border border-border bg-card p-6 transition-colors duration-150 hover:border-primary/60 hover:bg-accent/20">
-                <div className="flex items-start gap-4">
-                  <div
-                    className="flex items-center justify-center w-12 h-12 rounded-xl shrink-0 text-white shadow"
-                    style={{
-                      background: `linear-gradient(135deg, ${tool.color}ee, ${tool.color}99)`,
-                    }}
-                  >
-                    <DynamicIcon name={tool.icon} className="w-6 h-6" />
+              <div className="relative rounded-xl border border-border/80 bg-card p-5 transition-colors duration-150 hover:border-primary/50 hover:bg-muted/20 shadow-xs">
+                <div className="flex items-start gap-3.5">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-xl border border-border/80 bg-muted/60 text-muted-foreground group-hover:text-primary group-hover:border-primary/40 group-hover:bg-primary/5 transition-colors shrink-0">
+                    <DynamicIcon name={tool.icon} className="w-5 h-5" />
                   </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold text-sm group-hover:text-primary transition-colors text-foreground">
+                      <h3 className="font-semibold text-sm group-hover:text-primary transition-colors text-foreground truncate">
                         {tool.name}
                       </h3>
                       {tool.isAI && (
-                        <span className="px-1.5 py-0.5 text-[9px] font-bold bg-gradient-to-r from-red-500 to-rose-600 text-white rounded">
+                        <span className="px-1.5 py-0.5 text-[9px] font-mono font-medium bg-primary/10 text-primary border border-primary/20 rounded">
                           AI
                         </span>
                       )}
@@ -61,11 +56,12 @@ export function FeaturedTools() {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs">
-                  <span className="px-2 py-0.5 rounded-full bg-muted text-muted-foreground text-[11px] capitalize">
+                  <span className="px-2 py-0.5 rounded-md bg-muted/60 text-muted-foreground text-[11px] capitalize font-medium">
                     {tool.category}
                   </span>
-                  <span className="text-muted-foreground group-hover:text-primary flex items-center gap-1 font-medium transition-colors">
-                    Try Now <ArrowRight className="w-3.5 h-3.5" />
+                  <span className="text-muted-foreground group-hover:text-primary flex items-center gap-1.5 font-medium transition-colors">
+                    <span>Open Tool</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </div>
               </div>

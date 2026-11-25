@@ -1,5 +1,5 @@
-/* Hallmark · checked: 2026-11-21 · genre: modern-minimal
- * built: the project · redesign: polish · v2.0.0 */
+/* Hallmark · checked: 2026-11-25 · genre: modern-minimal
+ * built: the project · redesign: restyle · v2.0.0 */
 @import "tailwindcss";
 
 @theme {
@@ -24,11 +24,6 @@
   --color-ring: hsl(var(--ring));
   --color-brand-start: hsl(0 84% 60%);
   --color-brand-end: hsl(347 77% 50%);
-  --color-hero-glow: hsl(0 84% 60% / 0.12);
-  --color-glass-bg: hsl(0 0% 100% / 0.08);
-  --color-glass-border: hsl(0 0% 100% / 0.15);
-  --color-glass-dark-bg: hsl(0 0% 0% / 0.15);
-  --color-glass-dark-border: hsl(0 0% 100% / 0.08);
   --radius: 0.75rem;
 }
 
@@ -39,7 +34,7 @@
   --card-foreground: 222.2 84% 4.9%;
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
-  --primary: 0 84% 60%;
+  --primary: 0 84% 56%;
   --primary-foreground: 210 40% 98%;
   --secondary: 210 40% 96.1%;
   --secondary-foreground: 222.2 47.4% 11.2%;
@@ -49,31 +44,31 @@
   --accent-foreground: 222.2 47.4% 11.2%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 0 84% 60%;
+  --border: 214.3 31.8% 90%;
+  --input: 214.3 31.8% 90%;
+  --ring: 0 84% 56%;
 }
 
 .dark {
-  --background: 222 47% 5%;
+  --background: 224 71% 4%;
   --foreground: 210 40% 98%;
-  --card: 222 47% 8%;
+  --card: 224 71% 6%;
   --card-foreground: 210 40% 98%;
-  --popover: 222 47% 8%;
+  --popover: 224 71% 6%;
   --popover-foreground: 210 40% 98%;
-  --primary: 0 84% 60%;
-  --primary-foreground: 222 47% 5%;
-  --secondary: 217.2 32.6% 15%;
+  --primary: 0 84% 56%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 217.2 32.6% 12%;
   --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 12%;
-  --muted-foreground: 215 20.2% 70%;
-  --accent: 217.2 32.6% 15%;
+  --muted: 217.2 32.6% 10%;
+  --muted-foreground: 215 20.2% 68%;
+  --accent: 217.2 32.6% 13%;
   --accent-foreground: 210 40% 98%;
   --destructive: 0 62.8% 50%;
   --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 0 84% 60%;
+  --border: 217.2 32.6% 16%;
+  --input: 217.2 32.6% 16%;
+  --ring: 0 84% 56%;
 }
 
 * {
@@ -100,38 +95,15 @@ body {
   overflow-x: clip;
 }
 
-/* ── Clean single-hue brand text ────────────────────────────────────── */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-brand-start), var(--color-brand-end));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ── Typographic highlight ─────────────────────────────────────────── */
+.accent-heading {
+  color: hsl(var(--primary));
 }
 
-.gradient-text-blue {
-  color: var(--color-primary);
-}
-
-/* ── Hero gradient ──────────────────────────────────────────────────── */
-.hero-gradient {
-  background: radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-hero-glow), transparent);
-}
-
-.dark .hero-gradient {
-  background: radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-hero-glow), transparent);
-}
-
-/* ── Glassmorphism ──────────────────────────────────────────────────── */
-.glass {
-  background: var(--color-glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--color-glass-border);
-}
-
-.glass-dark {
-  background: var(--color-glass-dark-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--color-glass-dark-border);
+/* ── Clean Workbench Canvas ─────────────────────────────────────────── */
+.workbench-pattern {
+  background-image: radial-gradient(hsl(var(--foreground) / 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 /* ── Scrollbar ──────────────────────────────────────────────────────── */

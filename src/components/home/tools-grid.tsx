@@ -51,29 +51,29 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
         {/* Header Section */}
         <div className="text-center mb-8">
           <TitleComponent className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-3">
-            All <span className="gradient-text">60+ Pro YouTube Tools</span>
+            All <span className="accent-heading">60+ Creator Tools</span>
           </TitleComponent>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             Download, analyze, script, optimize, and grow your YouTube channel with free utilities. No signup required.
           </p>
         </div>
 
-        {/* Clean, Centered Search Bar */}
+        {/* Clean, Precision Search Bar */}
         <div className="max-w-2xl mx-auto mb-6">
           <div className="relative flex items-center">
-            <Search className="absolute left-4 w-4 h-4 text-muted-foreground pointer-events-none" />
+            <Search className="absolute left-3.5 w-4 h-4 text-muted-foreground pointer-events-none" />
             <input
               type="text"
               placeholder="Search tools by name, action (e.g. download, subtitles, tags, script)..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-11 pr-10 py-3.5 rounded-2xl border border-border bg-card/90 shadow-sm text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-foreground placeholder:text-muted-foreground/70"
+              className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-card shadow-2xs text-sm outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 transition-colors text-foreground placeholder:text-muted-foreground/70"
             />
             {search && (
               <button
                 type="button"
                 onClick={() => setSearch("")}
-                className="absolute right-3.5 p-1 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                className="absolute right-3 p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
                 title="Clear search"
               >
                 <X className="w-4 h-4" />
@@ -82,8 +82,8 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
           </div>
         </div>
 
-        {/* Organized Category Pills (Wrap neatly, no squishing or clipping) */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-8">
+        {/* Organized Category Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.key;
             return (
@@ -91,10 +91,10 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                 key={cat.key}
                 type="button"
                 onClick={() => setActiveCategory(cat.key)}
-                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
                   isActive
-                    ? "bg-primary text-primary-foreground shadow-md shadow-primary/25 font-semibold scale-[1.02]"
-                    : "bg-card border border-border hover:border-border/80 hover:bg-accent/50 text-muted-foreground hover:text-foreground shadow-sm"
+                    ? "bg-primary text-primary-foreground font-semibold shadow-xs"
+                    : "bg-card border border-border/80 hover:border-border hover:bg-muted/40 text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {cat.key === "all" ? (
@@ -104,7 +104,7 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                 )}
                 <span>{cat.label}</span>
                 <span
-                  className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
+                  className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${
                     isActive
                       ? "bg-white/20 text-white"
                       : "bg-muted text-muted-foreground"
@@ -170,15 +170,10 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                 href={`/tools/${tool.slug}`}
                 className="group block h-full select-none"
               >
-                <div className="h-full rounded-2xl border border-border bg-card p-5 transition-colors duration-150 hover:border-primary/60 hover:bg-accent/20 hover:shadow-md flex flex-col justify-between">
+                <div className="h-full rounded-xl border border-border/80 bg-card p-4.5 transition-colors duration-150 hover:border-primary/50 hover:bg-muted/15 shadow-2xs flex flex-col justify-between">
                   <div>
                     <div className="flex items-start gap-3 mb-3">
-                      <div
-                        className="flex items-center justify-center w-10 h-10 rounded-xl text-white shadow shrink-0"
-                        style={{
-                          background: `linear-gradient(135deg, ${tool.color}ee, ${tool.color}99)`,
-                        }}
-                      >
+                      <div className="flex items-center justify-center w-10 h-10 rounded-xl border border-border/80 bg-muted/60 text-muted-foreground group-hover:text-primary group-hover:border-primary/40 group-hover:bg-primary/5 transition-colors shrink-0">
                         <DynamicIcon name={tool.icon} className="w-5 h-5" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -187,17 +182,17 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                             {tool.name}
                           </h3>
                           {tool.isAI && (
-                            <span className="shrink-0 px-1.5 py-0.5 text-[9px] font-bold bg-gradient-to-r from-red-500 to-rose-600 text-white rounded">
+                            <span className="shrink-0 px-1.5 py-0.5 text-[9px] font-mono font-medium bg-primary/10 text-primary border border-primary/20 rounded">
                               AI
                             </span>
                           )}
                           {tool.comingSoon && (
-                            <span className="shrink-0 px-1.5 py-0.5 text-[9px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded">
+                            <span className="shrink-0 px-1.5 py-0.5 text-[9px] font-mono font-medium bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded">
                               Soon
                             </span>
                           )}
                           {tool.popular && (
-                            <Star className="shrink-0 w-3.5 h-3.5 text-amber-500 fill-current" />
+                            <Star className="shrink-0 w-3 h-3 text-amber-500 fill-current" />
                           )}
                         </div>
                         <p className="text-xs text-muted-foreground mt-1 line-clamp-2 leading-relaxed">
@@ -208,11 +203,12 @@ export function ToolsGrid({ titleTag = "h2", isStandalonePage = false }: ToolsGr
                   </div>
 
                   <div className="pt-3 border-t border-border/40 flex items-center justify-between text-xs">
-                    <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground capitalize font-medium text-[11px]">
+                    <span className="px-2 py-0.5 rounded-md bg-muted/60 text-muted-foreground capitalize font-medium text-[11px]">
                       {tool.category}
                     </span>
                     <span className="text-muted-foreground group-hover:text-primary flex items-center gap-1 font-medium transition-colors">
-                      Open <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                      <span>Open</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                     </span>
                   </div>
                 </div>
